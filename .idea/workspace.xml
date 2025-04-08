@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website/docs/en/UserGuide/SPGReasoner/KGDSL.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/en/UserGuide/SPGReasoner/KGDSL.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/ch/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/ch/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744082435942</updated>
-      <workItem from="1744082437690" duration="19510000" />
+      <workItem from="1744082437690" duration="20884000" />
     </task>
     <servers />
   </component>
