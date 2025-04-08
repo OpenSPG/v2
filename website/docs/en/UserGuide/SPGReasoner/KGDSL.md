@@ -794,8 +794,7 @@ Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/PopularShop) {
 }
 ```
 
-> Note: ${hot_shop_threshold} is a threshold parameter that needs to be filled in with a specific value when using the predicate. 
->
+`Note: ${hot_shop_threshold} is a threshold parameter that needs to be filled in with a specific value when using the predicate.`
 
 ```plain
 Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/NamelessShop) {
