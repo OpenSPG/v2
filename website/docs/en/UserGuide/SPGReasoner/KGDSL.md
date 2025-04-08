@@ -810,7 +810,7 @@ Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/NamelessShop) {
 }
 ```
 
-> Note: ${nameless_shop_threashold} is a threshold parameter that needs to be filled in with a specific value when using the predicate. 
+> `Note: ${nameless_shop_threashold} is a threshold parameter that needs to be filled in with a specific value when using the predicate. `
 >
 
 #### 4.5.2 Logical predicate definition between entity types
