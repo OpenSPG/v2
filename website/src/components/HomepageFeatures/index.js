@@ -4,32 +4,29 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Seamless Integration Across Knowledge Graphs, Bridging Data Silos',
+    Svg: "https://mdn.alipayobjects.com/huamei_xgb3qj/afts/img/A*88JoRLde504AAAAAAAAAAAAADtmcAQ/original",
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+          By employing a standardized semantic framework, it becomes feasible to connect diverse, heterogeneous, sequential and intricately related data sources within an enterprise, thereby dismantling data silos
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Deep Semantic Contextual Association',
+    Svg: "https://mdn.alipayobjects.com/huamei_xgb3qj/afts/img/A*9walTIIM8PsAAAAAAAAAAAAADtmcAQ/original",
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+          By standardizing semantic enrichment of business entity properties, data can be managed knowledge-based, thereby enriching semantic associations among entities and further improving business efficiency
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Knowledge Symbolic Representation, Bidirectionally Driven by Large Models',
+    Svg: "https://mdn.alipayobjects.com/huamei_xgb3qj/afts/img/A*wsR8R7o7ysgAAAAAAAAAAAAADtmcAQ/original",
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+          Leveraging a programmable knowledge graph framework makes it easy to combine domain knowledge graphs with large language models(LLM), thereby enhancing the controllability of LLMs in practical applications.
       </>
     ),
   },
@@ -39,7 +36,7 @@ function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={Svg} className={styles.featureSvg} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>

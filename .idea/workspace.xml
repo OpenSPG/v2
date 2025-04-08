@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2019-05-28-first-blog-post.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2019-05-29-long-blog-post.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2021-08-01-mdx-blog-post.mdx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2021-08-26-welcome/docusaurus-plushie-banner.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2021-08-26-welcome/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/authors.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/tags.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/intro.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/tutorial-basics/_category_.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/tutorial-basics/congratulations.md" beforeDir="false" />
@@ -26,26 +15,9 @@
       <change beforePath="$PROJECT_DIR$/website/docs/tutorial-extras/img/localeDropdown.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/tutorial-extras/manage-docs-versions.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/tutorial-extras/translate-your-site.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/HomepageFeatures/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/HomepageFeatures/styles.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/css/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/index.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/markdown-page.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/.nojekyll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/docusaurus-social-card.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/docusaurus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/undraw_docusaurus_mountain.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/undraw_docusaurus_react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/undraw_docusaurus_tree.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/HomepageFeatures/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/HomepageFeatures/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +45,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2vQftRN9IndjV8B0sgBehQEsjJc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -83,9 +58,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/en/HowtoContribute" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/en/HowtoContribute" />
+      <recent name="$PROJECT_DIR$/website/docs/en/DesignPhilosophy/TechReport" />
+      <recent name="$PROJECT_DIR$/website/docs/en/DesignPhilosophy/TechnologySharing" />
+      <recent name="$PROJECT_DIR$/website/docs/en/DesignPhilosophy" />
+      <recent name="$PROJECT_DIR$/website/docs/en/Reference" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -95,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744082435942</updated>
-      <workItem from="1744082437690" duration="7638000" />
+      <workItem from="1744082437690" duration="17266000" />
     </task>
     <servers />
   </component>
