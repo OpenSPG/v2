@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/paper/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/technical_report/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/paper/technical_report.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/technical_report/kag.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/software_introduction/_category_.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/software_introduction/_category_.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/software_introduction/openspg.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/software_introduction/openspg.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/white_paper.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/white_paper/openspg.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,17 +47,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/recent_posts/release_notes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/design_philosophy/academic_paper" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/design_philosophy/academic_paper" />
+      <recent name="$PROJECT_DIR$/website/docs/design_philosophy/white_paper " />
       <recent name="$PROJECT_DIR$/website/docs/recent_posts/release_notes" />
       <recent name="$PROJECT_DIR$/website/docs/recent_posts/technology_sharing" />
       <recent name="$PROJECT_DIR$/website/docs/design_philosophy/software_introduction" />
-      <recent name="$PROJECT_DIR$/website/docs/design_philosophy/paper" />
-      <recent name="$PROJECT_DIR$/website/docs/design_philosophy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/design_philosophy/white_paper " />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -65,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744082435942</updated>
       <workItem from="1744082437690" duration="37285000" />
-      <workItem from="1744184822208" duration="8180000" />
+      <workItem from="1744184822208" duration="10975000" />
     </task>
     <servers />
   </component>
