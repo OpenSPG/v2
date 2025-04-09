@@ -34,6 +34,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: 'blog',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -121,7 +122,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/docs/recent_posts/release_notes/0.6',
+                to: '/blog/recent_posts/release_notes/0.6',
               },
               {
                 label: 'GitHub',
