@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-sidebar_label: White Paper
+sidebar_label: OpenSPG White Paper
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

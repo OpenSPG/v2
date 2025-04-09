@@ -103,7 +103,7 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                to: '/docs/en/QuickStart',
+                to: '/docs_en',
               },
             ],
           },
@@ -121,7 +121,7 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                to: '/docs/recent_posts/release_notes/0.6',
               },
               {
                 label: 'GitHub',
