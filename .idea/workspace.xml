@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website/docs/ch/index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/ch/FAQ.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/ch/FAQ.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/ch/UserGuide/知识推理语法/专家规则（DSL）语法.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/ch/UserGuide/知识推理语法/专家规则（DSL）语法.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/ch/UserGuide/自定义扩展/自定义prompt.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/ch/UserGuide/自定义扩展/自定义prompt.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/ch/UserGuide/自定义扩展/自定义schema.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/ch/UserGuide/自定义扩展/自定义schema.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,17 +47,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/ch/UserGuide" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/src/pages" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/src/pages" />
       <recent name="$PROJECT_DIR$/website/docs/ch/UserGuide" />
       <recent name="$PROJECT_DIR$/website/docs/ch" />
       <recent name="$PROJECT_DIR$/website/docs/en/HowtoContribute" />
       <recent name="$PROJECT_DIR$/website/docs/en/DesignPhilosophy/TechReport" />
-      <recent name="$PROJECT_DIR$/website/docs/en/DesignPhilosophy/TechnologySharing" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,7 +68,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744082435942</updated>
-      <workItem from="1744082437690" duration="25678000" />
+      <workItem from="1744082437690" duration="35043000" />
     </task>
     <servers />
   </component>

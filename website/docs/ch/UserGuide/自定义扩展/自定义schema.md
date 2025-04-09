@@ -120,7 +120,7 @@ kag 产品中内置的、针对开放域数据集的schema，在面向特定领�
 同时，kag 团队会不断发布一些领域相关schema，供使用者参考。
 
 # 2、schema 文件提交&更新
-以riskmining 场景为例，schema 文件一般位于./${bizScene}/schema/目录下，包括spg 格式的schema 文件以及rule 文件。
+以riskmining 场景为例，schema 文件一般位于`./${bizScene}/schema/`目录下，包括spg 格式的schema 文件以及rule 文件。
 
 ```yaml
 examples

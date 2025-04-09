@@ -6,7 +6,7 @@ KAG 支持业务自定义prompt以干预图谱构建、图谱推理的效果。
 KAG中的prompt的基类为kag.interface.PromptABC，主要包含预定义的prompt模板内容（一般是任务提示和示例）以及解析大模型输出字符串的功能。用户如果要自定义prompt，可以继承该基类并实现相关逻辑。具体地说，一般要包含如下步骤：
 
 ### 1.1、自定义模板内容
-在自定义类中定义名为template_{language}的变量作为prompt模板，其中language为prompt支持的语言，如zh,en等。如果类定义了template_zh和template_en两个变量，那么框架会根据project配置中的language为en或zh自动选择使用哪个模板。
+在自定义类中定义名为`template_{language}`的变量作为prompt模板，其中language为prompt支持的语言，如zh,en等。如果类定义了template_zh和template_en两个变量，那么框架会根据project配置中的language为en或zh自动选择使用哪个模板。
 
 模板变量取值为python dict或者json string，示例如下：
 

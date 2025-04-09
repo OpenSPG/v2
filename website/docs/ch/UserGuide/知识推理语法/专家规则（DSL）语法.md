@@ -829,7 +829,7 @@ Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/PopularShop) {
 }
 ```
 
-> 注：${hot_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入 
+> `注：${hot_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入` 
 >
 
 ```plain
@@ -846,7 +846,7 @@ Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/NamelessShop) {
 }
 ```
 
-> 注：${nameless_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入 
+> `注：${nameless_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入` 
 >
 
 #### 4.5.2 实体类型之间逻辑谓词定义

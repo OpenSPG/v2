@@ -1,0 +1,3067 @@
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/Examples/公开数据集/benchmark.md
+    文件行：1~55
+风险内容：
+    # benchmark
+    
+    # 1、多跳事实问答效果
+    V0.6版本与KAG技术报告（[https://arxiv.org/pdf/2409.13731](https://arxiv.org/pdf/2409.13731)）使用相同配置的EM和F1指标如下：
+    
+    | **** | **HotpotQA** | | **2Wiki** | | **MuSiQue** | **Average** |
+    | --- | --- | --- | --- | --- | --- | --- |
+    | | EM | F1 | EM | F1 | EM | F1 | EM | F1 |
+    | GraphRAG | 0 |  | 0 |  | 0 |  | 0 |  |
+    | lightRAG | 0 |  | 0 |  | 0 |  | 0 |  |
+    | KAG TechReport<br/>（DeepSeek-V2 API） | 62.5 | 76.2 | 67.8 | 76.2 | 36.7 | 48.7 | 55.6 | 67.0 |
+    | V0.6<br/>（DeepSeek-V2.5 API） | 60.9 | 75.4 | 69.6 | 78.6 | 36.1 | 48.2 | 55.5 | 67.4 |
+    
+    
+    注：KAG 技术报告指标取自原文 Table 10。
+    
+    # 2、摘要生成效果
+    + **数据集**
+    
+    为了测试 KAG 在摘要生成类任务上的表现，我们在 [UltraDomain](https://huggingface.co/datasets/TommyChien/UltraDomain/tree/main) cs.jsonl 数据集上对 KAG 和 LightRAG 的输出进行对比，参考 [KAG 示例：CSQA](https://github.com/OpenSPG/KAG/blob/master/kag/examples/csqa/README_cn.md)。
+    
+    cs.jsonl 包含 10 个计算机科学（Computer Science）领域的文档，和基于此 10 个文档的 100 个问题及其答案。与 LightRAG 论文的比较方法不同，我们使用 cs.jsonl 中自带的问题，而不是用大模型生成问题进行评测。同时，在计算 factual correctness 指标时，我们以 cs.jsonl 自带问题的答案为标准。
+    
+    + **量化评测结果：**
+    
+    | **** | **KAG** | **LightRAG** |
+    | --- | --- | --- |
+    | Comprehensiveness（0~10） | 7.57 | 8.87 |
+    | Diversity（0~10） | 6.87 | 8.28 |
+    | Empowerment（0~10） | 7.54 | 8.53 |
+    | Factual Correctness（0~1） | 0.365 | 0.352 |
+    | 构建时间消耗 | 4800 秒 | 3400 秒 |
+    | 构建 tokens 消耗 | 700.6 万 | 442.8 万 |
+    | 基础配置 | 生成模型：deepseek-chat<br/>表示模型：bge-m3<br/>并发数：50(num_threads_per_chain=50, num_chains=16)<br/>ChunkSize: (split_length=4950,window_length=100) | 生成模型：deepseek-chat<br/>表示模型：bge-m3<br/>并发数：50(llm_model_max_async=50, embedding_func_max_async=16)<br/>ChunkSize: (chunk_token_size=1200，chunk_overlap_token_size=100) |
+    
+    
+    + **指标解读**
+    
+    此次发版，从指标上看，KAG 在摘要生成任务上虽然相比上一版有所提高，但和 LightRAG 比还有一定差距；同时，为了同时支持摘要生成+事实问答，在知识抽取时做了更多的工作，加剧了tokens 消耗，后续我们会持续优化。
+    
+    该表未展示 EM 和 F1 指标，这是因为我们用 HotpotQA 数据进行构建和测试发现，LightRAG、GraphRAG 和 KAG（使用优化后的 prompt）输出和 HotpotQA 评估集对比算出的 EM 都是 0、F1 接近 0，我们认为 EM 和 F1 不适合评估摘要生成类任务的输出。
+    
+    
+    
+    我们也了解到上表中的四个评价指标都不太完美。
+    
+    + Comprehensiveness、Diversity 和 Empowerment 指标高低依赖评价时答案的顺序，参考 [issue](https://github.com/HKUDS/LightRAG/issues/438) 和 LightRAG 论文。
+    + Factual Correctness 依赖大模型，输出不稳定。我们也尝试过 RAGAS 中的 Factual Correctness 计算方法，它比 CSQA 示例中展示的方式更不稳定。
+    
+    如大家有更合理的评估方式，欢迎反馈。
+    
+    
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/pdf/2409.13731}
+{hitWord=https://arxiv.org/pdf/2409.13731)}
+{hitWord=https://huggingface.co/datasets/TommyChien/UltraDomain/tree/main)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/FAQ.md
+    文件行：1~134
+风险内容：
+    ---
+    sidebar_position: 8
+    slug: /ch/faq
+    sidebar_label: 常见问题
+    ---
+    
+    # 常见问题
+    
+    在使用过程中，遇到任何关于OpenSPG或KAG的相关问题，可通过GitHub Issue进行提问或到GitHub Discussions 参与讨论，你的提问会沉淀下来帮到其他小伙伴。
+    
+    有些问题可能是之前已经遇到过的，可以在Issue当中进行搜索， 如果你在使用过程中解决了一些问题，也非常欢迎在社区互动，解决并关闭对应的Issue
+    
+    | | **Issue** | **Discussions** |
+    | --- | --- | --- |
+    | **OpenSPG** | [https://github.com/OpenSPG/openspg/issues](https://github.com/OpenSPG/openspg/issues) | [https://github.com/OpenSPG/KAG/discussions](https://github.com/OpenSPG/KAG/discussions) |
+    | **KAG** | [https://github.com/OpenSPG/KAG/issues](https://github.com/OpenSPG/KAG/issues) | [https://github.com/OpenSPG/openspg/discussions](https://github.com/OpenSPG/openspg/discussions) |
+    
+    
+    ## 问题1：图储存配置，模型配置，向量配置是否有内置服务
+    图存储配置，通过docker-compose.yml安装镜像后有对应的内置服务，对性能要求不高希望快速验证的场景 可直接使用以下配置
+    
+    ```json
+    {
+      "uri":"neo4j://release-openspg-neo4j:7687",
+      "user":"neo4j"
+    }
+    ```
+    
+    模型服务、向量服务暂未进行内置，需要用户自己进行搭建或者调用第三方的API，具体流程可参考：[生成(chat)模型](https://openspg.yuque.com/ndx6g9/docs/hwsng2zg3fefggas) [表示(embedding)模型](https://openspg.yuque.com/ndx6g9/docs/zxdbplek55gv0oq3)
+    
+    ## 问题2：项目的配置文件kag_config修改后，为何没有生效？
+    解决：由于元数据都存储在服务端(openspg-server)中，修改KAG目录下文件后需要将对应配置更新到服务端。步骤：在项目目录下，执行knext project update --proj_path . 将项目配置进行更新，同时在OpenSPG服务端页面中也直接修改对应配置信息，其他命令可参考：[命令行工具](https://openspg.yuque.com/ndx6g9/docs/hhcv6l993gbhm54w)
+    
+    
+    
+    ## 问题3：我想保留或者清空 Neo4j镜像中的数据，应该如何设置？
+    如果需要将数据持久化在宿主机上可在docker-compose.yml中配置 - $HOME/dozerdb/data:/data，反之去掉该代码，删除Container时数据也会丢失，默认未设置。MySQL同理
+    
+    ![1733710458721-919ac5ec-86f2-41e6-b6fd-e4ca421ee994.png](./img/mVnnHV5Uymubsqw5/1733710458721-919ac5ec-86f2-41e6-b6fd-e4ca421ee994-795159.png)
+    
+    
+    
+    ## 问题4：正确配置完生成模型和表示模型，都可以在宿主机上通过curl命令成功访问后，但在OpenSPG服务端的知识问答页面中，还是出现connection refused或者timeout
+    OpenSPG问答页面进行自然语言问答，需要spg-server的容器能正常访问到宿主机上的向量服务，对于使用windows或mac上的docker desktop的同学来说，可以指定向量服务base_url = http://host.docker.internal:11434/${path}访问宿主机，对于使用linux的同学来说，可以指定base_url = [http://172.17.0.1:11434/${path}](http://172.17.0.1:11434/${path})通过访问docker0网络的网关从而访问宿主机。此外，需要注意启动ollama服务前，export OLLAMA_HOST=0.0.0.0:11434，配置ollama监听来自所有地址的访问请求。
+    
+    同时我们在创建项目时，会对所有配置进行校验，验证通过后才能进行保存
+    
+    
+    
+    ## 问题5：我的文档比较大，发现调用模型服务时消耗的tokens太多，应该如何解决
+    通过产品使用时，根据实际的情况可以适当调大Chunk切分的长度，比如由200调整至2000甚至更高，切分长度越小后续的抽取效果相对越好，可根据实际情况进行调整。
+    
+    
+    
+    ## 问题6：为什么我找不到对应的Python包No matching distribution found for openspg-knext==xxxx
+    openspg的包部署在pypi.org，可通过以下地址进行查看对应包是否存在：
+    
+    [https://pypi.org/project/openspg-kag](https://pypi.org/project/openspg-kag)
+    
+    [https://pypi.org/project/openspg-knext](https://pypi.org/project/openspg-knext)
+    
+    如果报错的版本已经存在，请检查本地环境是否进行了代理，或者转发到了其他pypi仓库
+    
+    如果报错版本在pypi.org中未查询到请及时与我们联系
+    
+    
+    
+    ## 问题7：前端代码是否开源 ，kag-model何时开源
+    **前端代码**：前端代码目前暂无开源计划，后续会根据社区使用情况 评估后判断是否开源
+    
+    **kag-model**：kag-model的优化时KAG后续的工作重点，我们将在后续版本中进行开源，KAG后续计划如下：
+    
+    + 领域知识注入，实现领域概念图与实体图的融合
+    + kag-model 优化，实现构图&问答的效率提升
+    + 知识逻辑约束的幻觉抑制
+    
+    ## 问题8：怎么查看checkpoint文件的内容
+    KAG框架内置了text和binary两种checkpoint格式：text格式用于记录执行日志，位于ckpt目录的顶层，binary格式用于记录任务执行各阶段的中间结果，如Extractor组件抽取出的图数据。
+    
+    + **统计信息查看**
+    
+    ![1735875304536-ef2e90ea-16bc-4e6c-be02-9a1f5d508bb7.png](./img/mVnnHV5Uymubsqw5/1735875304536-ef2e90ea-16bc-4e6c-be02-9a1f5d508bb7-113572.png)
+    
+    
+    
+    对于text格式的checkpoint文件，可以直接打开查看：
+    
+    ```shell
+    less kag_checkpoint_0_1.ckpt
+    ```
+    
+    其中记录了每条记录构建出的点/边/图的数量
+    
+    ![1735875488057-39876c94-e749-406f-b932-24ea6326e509.png](./img/mVnnHV5Uymubsqw5/1735875488057-39876c94-e749-406f-b932-24ea6326e509-494193.png)
+    
+    + **binary 信息查看：**
+    
+    binary格式的checkpoint基于zodb实现kv存储，用户可参考zodb官方文档获取更详细的使用信息：[https://zodb.org/en/latest/](https://zodb.org/en/latest/)
+    
+    
+    
+    下面给出了一个示例程序，从extractor组件的checkpoint文件中提取出所有产出的原始图数据，并写入到一个jsonl文件中做进一步分析优化：
+    
+    ```python
+    import json
+    import pickle
+    from ZODB import DB
+    from ZODB.FileStorage import FileStorage
+    
+    
+    storage = FileStorage("extractor/kag_checkpoint_0_1.ckpt")
+    db = DB(storage)
+    connection = db.open()
+    print(len(connection.root.data))
+    graphs = []
+    for k, v in connection.root.data.items():
+        """
+        The data is pickled to prevent it from being modified by ZODB in subsequent processes. 
+        So it needs to be deserialized upon reading.
+        """
+        graphs+=pickle.loads(v)
+    with open("extracted_subgraphs.jsonl", "w") as writer:
+        for g in graphs:
+            writer.write(json.dumps(g.to_dict(), ensure_ascii=False))
+            writer.write("\n")
+    ```
+    
+    需要注意的是，zodb可以追踪对象在程序中的修改并自动同步到文件中，因此我们在这里使用pickle将数据序列化成不可变的字节序列后再写入zodb，以免在后续处理组件中被zodb修改。在读出的时候，我们同样需要用pickle反序列化，从而获取原始数据。
+    
+    ## 问题9：如何自定义抽取或问答任务
+    KAG框架在0.6版本引入了基于注册器的代码与配置管理机制。用户可以重载KAG各个内置组件，并注册到框架中替换默认实现。详情请参考[自定义代码](https://openspg.yuque.com/ndx6g9/docs/mxdhqfad16p4f8pk)部分文档：
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://openspg.yuque.com/ndx6g9/docs/hwsng2zg3fefggas)}
+{hitWord=https://openspg.yuque.com/ndx6g9/docs/zxdbplek55gv0oq3)}
+{hitWord=https://openspg.yuque.com/ndx6g9/docs/hhcv6l993gbhm54w)}
+{hitWord=http://host.docker.internal:11434/}
+{hitWord=https://pypi.org/project/openspg-kag}
+{hitWord=https://pypi.org/project/openspg-kag)}
+{hitWord=https://pypi.org/project/openspg-knext}
+{hitWord=https://pypi.org/project/openspg-knext)}
+{hitWord=https://zodb.org/en/latest/}
+{hitWord=https://zodb.org/en/latest/)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/命令行工具.md
+    文件行：1~289
+风险内容：
+    # 命令行工具
+    
+    ## 1 命令行工具
+    通过`knext`命令行工具，以及定义的多个子命令，实现完整的图谱构建与使用流程。
+    
+    ```bash
+    # show the user maual
+    
+    $ knext --help
+    Usage: knext [OPTIONS] COMMAND [ARGS]...
+    
+    Options:
+      --version  Show the version and exit.
+      --help     Show this message and exit.
+    
+    Commands:
+      project   Project client.
+      reasoner  Reasoner client.
+      schema    Schema client.
+      thinker   Thinker client.
+    ```
+    
+    ### 1.1 project
+    ```bash
+    # show the user maual
+    $ knext project --help
+    Usage: knext project [OPTIONS] COMMAND [ARGS]...
+    
+      Project client.
+    
+    Options:
+      --help  Show this message and exit.
+    
+    Commands:
+      create   Create new project with a demo case.
+      list
+      restore
+      update
+    ```
+    
+    #### 1.1.1 创建项目
+    ```bash
+    # show the user maual
+    $ knext project create --help
+    
+    Usage: knext project create [OPTIONS]
+    
+      Create new project with a demo case.
+    
+    Options:
+      --config_path TEXT        Path of config.  [required]
+      --tmpl [default|medical]  Template of project, use default if not specified.
+      --help                    Show this message and exit.
+    ```
+    
+    + 【必填】--config_path，项目配置文件路径
+    
+    使用实例：
+    
+    ```bash
+    # show the user maual
+    $ knext project create --config_path kag_config.yaml
+    ```
+    
+    
+    
+    结果：  
+    执行成功后会在当前目录下创建出`KagDemo`目录，执行`cd KagDemo`进入示例项目。
+    
+    ```plain
+    .
+    ├── builder
+    │   ├── __init__.py
+    │   ├── data
+    │   ├── indexer.py
+    │   └── prompt
+    ├── kag_config.yaml
+    ├── reasoner
+    │   └── __init__.py
+    ├── schema
+    │   ├── KagDemo.schema
+    │   └── __init__.py
+    └── solver
+        ├── __init__.py
+        └── prompt
+    ```
+    
+    
+    
+    #### 1.1.2 恢复项目
+    使用此命令可以根据以存在的项目目录，快速恢复项目。
+    
+    ```bash
+    # show the user maual
+    $ knext project restore --help
+    
+    Usage: knext project restore [OPTIONS]
+    
+    Options:
+      --host_addr TEXT  Address of spg server.
+      --proj_path TEXT  Path of config.
+      --help            Show this message and exit.
+    ```
+    
+    + --proj_path，项目文件夹根路径，默认为当前目录。
+    + --host_addr，SPG server的地址，默认为yaml中配置的host_addr。
+    
+    使用实例：
+    
+    ```bash
+    $ knext project restore --proj_path KagDemo --host_addr http://127.0.0.1:8887
+    ```
+    
+    
+    
+    结果：
+    
+    yaml文件中会在[project]下新增id。当Server存在该项目时，返回该项目id。当Server不存在该项目时，新建项目并返回id。
+    
+    #### 1.1.3 更新项目配置
+    当kag_config.yaml更新时，需要执行该命令将配置同步到SPG Server。
+    
+    ```bash
+    # show the user maual
+    $ knext project update --help
+    
+    Usage: knext project update [OPTIONS]
+    
+    Options:
+      --proj_path TEXT  Path of config.
+      --help            Show this message and exit.
+    ```
+    
+    + --proj_path，项目文件夹根路径，默认为当前目录。
+    
+    使用实例：
+    
+    ```bash
+    knext project update --proj_path KagDemo
+    ```
+    
+    #### 1.1.4 查看项目列表
+    可以查看当前服务器上的项目列表：
+    
+    ```shell
+    # show the user manual
+    
+    $ knext project list --host_addr http://127.0.0.1:8887
+    
+    Project Name | Project ID
+    -------------------------
+    RiskMining           | 1         
+    SupplyChain          | 2         
+    TwoWiki              | 3         
+    Medicine             | 4         
+    EventDemo            | 5         
+    HotpotQA             | 6 
+    ```
+    
+    + --host_addr，SPG server地址，默认为[http://127.0.0.1:8887](http://127.0.0.1:8887)
+    
+    ### 1.2 schema
+    ```bash
+    # show the user maual
+    $ knext schema --help
+    
+    Usage: knext schema [OPTIONS] COMMAND [ARGS]...
+    
+      Schema client.
+    
+    Options:
+      --help  Show this message and exit.
+    
+    Commands:
+      commit            Commit local schema and generate schema helper.
+      reg_concept_rule  Register a concept rule according to DSL file.
+    ```
+    
+    #### 1.2.1 提交schema
+    当项目被创建或重载后，或者schema文件有更新后，需要执行该命令将schema同步到SPG Server。
+    
+    ```bash
+    # show the user maual
+    $ knext schema commit --help
+    
+    Usage: knext schema commit [OPTIONS]
+    
+      Commit local schema and generate schema helper.
+    
+    Options:
+      --help  Show this message and exit.
+    ```
+    
+    #### 1.2.2 提交概念规则
+    ```bash
+    # show the user maual
+    $ knext schema reg_concept_rule --help
+    
+    Usage: knext schema reg_concept_rule [OPTIONS]
+    
+      Register a concept rule according to DSL file.
+    
+    Options:
+      --file TEXT  Path of DSL file.
+      --help       Show this message and exit.
+    ```
+    
+    
+    
+    + 【必填】--file concept rule文件路径
+    
+    使用实例：  
+    schema/concept.rule
+    
+    ```plain
+    namespace DEFAULT
+    
+    `TaxOfRiskApp`/`赌博应用`:
+        rule: [[
+            ...
+        ]]
+    ```
+    
+    执行命令：
+    
+    ```bash
+    $ knext schema reg_concept_rule --file schema/concept.rule
+    ```
+    
+    结果：
+    
+    ```plain
+    Defined belongTo rule for ...
+    ...
+    Concept rule is successfully registered.
+    ```
+    
+    ### 1.3 reasoner
+    ```bash
+    $ knext reasoner --help
+    
+    Usage: knext reasoner [OPTIONS] COMMAND [ARGS]...
+    
+      Reasoner client.
+    
+    Options:
+      --help  Show this message and exit.
+    
+    Commands:
+      execute   Query dsl by providing a string or file.
+    ```
+    
+    
+    
+    #### 1.3.1 执行推理任务
+    ```bash
+    $ knext reasoner execute [--file] [--dsl]
+    ```
+    
+    
+    
+    + 【二选一】--file 查询的dsl文件。
+    + 【二选一】--dsl 查询的dsl语法，用双引号括起来。
+    
+    使用实例：  
+    reasoner/demo.dsl:
+    
+    ```bash
+    MATCH (s:Demo.Company)
+    RETURN s.id, s.address
+    ```
+    
+    执行命令：
+    
+    ```bash
+    $ knext reasoner execute --file reasoner/demo.dsl
+    ```
+    
+    结果：
+    
+    ```plain
+    "s.id","s.address"
+    "00","浙江省杭州市西湖区"
+    ```
+    
+    
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=http://127.0.0.1:8887)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/模型服务配置/表示(embedding)模型.md
+    文件行：1~226
+风险内容：
+    # 表示(embedding)模型
+    
+    KAG 系统利用表示模型服务来生成实体属性和查询语句的向量表示。这一步骤对于图谱构建、推理以及问答等任务至关重要。实体属性的向量设置，参考 "知识建模"相关章节。
+    
+    **支持多种表示模型接口 **
+    
+    为了满足不同用户的需求，KAG 支持接入多种流行的表示模型服务。这意味着您可以根据自己的偏好或者已有资源来选择最合适的解决方案
+    
+    + **MaaS(OpenAI兼容接口)：**如果您已经熟悉或正在使用 OpenAI 提供的服务，那么可以直接通过其API调用来获取所需的向量表示。此外，还有其他提供类似功能的服务商如硅基流动也完全兼容。 
+    + **Ollama/Vllm(本地模型服务)：**除了上述选项外，我们也支持与 Ollama 和 **Vllm** 这样的模型服务框架对接。它们各自拥有独特的特点，在某些特定场景下可能表现更佳。 
+    
+    **如何选择？**
+    
+    + 如果您希望快速上手，并且对现有技术栈有一定了解，那么采用 **MaaS** 模式可能是最佳起点。 
+    + 对于追求更高灵活性或是有特殊需求（比如需要定制化调整）的用户，则建议探索 **Ollama** 或 **Vllm** 等提供更多自定义选项的服务。
+    
+    
+    
+    **特别注意：****不同表示模型生成的向量，即使维度相同，也不能混用；因此，知识库配置中，表示模型相关的配置，一经设置，便不能修改。**
+    
+    # **MaaS(****OpenAI兼容接口****)**
+    开发者可自行前往 [硅基流动官网](https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings)、[OpenAI官网](https://chat.openai.com/)，提前完成账户的注册以及模型服务的开通，并获取api-key，填入到后续的项目配置中。
+    
+    硅基流动 的 API 同时提供了文本生成和 embedding 生成的 API，且目前大模型 `Qwen/Qwen2.5-7B-Instruct` 和向量模型 `BAAI/bge-m3` 完全免费，适合快速验证测试。也可在[模型广场](https://cloud.siliconflow.cn/models)查找更多免费模型。通过[硅基流动](https://account.siliconflow.cn/login) 注册账号后获取 API 密钥即可使用
+    
+    **特别注意**：免费模型有 RPM 和 TPM 限制，适合小规模数据快速验证，调用量大时可能报错。
+    
+    ## **产品模式配置**
+    用户通过Docker部署openspg-server后在创建知识库时进行向量配置，我们建议新手用户可使用商业模型API进行快速上手
+    
+    + **配置项**
+    
+    ![1736318875463-dc29f533-0943-4d40-a102-9c1243a1341b.png](./img/3BYCA_HRGfTtRHSF/1736318875463-dc29f533-0943-4d40-a102-9c1243a1341b-319173.png)
+    
+    + **配置示例**
+    
+    ```json
+    # replace base_url with siliconflow hostaddr
+    {
+        "type": "openai",
+        "model": "BAAI/bge-m3",
+        "base_url": "https://api.siliconflow.cn/v1",
+        "api_key": "YOUR_API_KEY",
+        "vector_dimensions": "1024"
+    }
+    ```
+    
+    ```json
+    # base_url use openai default hostaddr
+    {
+        "type": "openai",
+        "model": "text-embedding-ada-002",
+        "base_url": "https://api.openai.com/v1",
+        "api_key": "YOUR_API_KEY",
+        "vector_dimensions": "1536"
+    }
+    ```
+    
+    
+    
+    | **参数名** | **参数说明** |
+    | --- | --- |
+    | type | Maas模式下为固定值 openai |
+    | model | 访问 [Models - OpenAI API](https://platform.openai.com/docs/models/embeddings) 查看可用的 OpenAI 表示模型，如 text-embedding-ada-002、text-embedding-3-small 等。<br/>访问 [Embedding Models - siliconflow API](https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings) 查看可用的表示模型，如 BAAI/bge-m3、BAAI/bge-large-zh-v1.5 等。 |
+    | base_url | 对应商业模型向量服务的地址 |
+    | api_key | 获取您的api_key，请前往 [硅基流动官网](https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings)、[openai官网](https://chat.openai.com/) 获取。 |
+    
+    
+    + **模型服务可用性测试**
+    
+    配置保存时，kag 会根据表示模型配置调用大模型api，如果调用失败则提示保存失败。用户可在openspg 容器中通过curl 命令验证服务的可达性、以及api-key 是否过期。
+    
+    ```bash
+    # 将获取到的api-key 替换掉下述命令中的 <token>
+    
+    $ curl --request POST \
+      --url https://api.siliconflow.cn/v1/embeddings \
+      --header 'Authorization: Bearer <token>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+          "model": "BAAI/bge-m3",
+          "input": "硅基流动embedding上线，多快好省的 embedding 服务，快来试试吧",
+          "encoding_format": "float"
+        }'
+    ```
+    
+    ## **开发者模式**
+    用户可根据配置文件 kag_config.yaml 中的 vectorize_model 条目自行更改 kag 所有环节依赖的表示模型。
+    
+    ```python
+    vectorize_model: &vectorize_model
+      api_key: put your api key here
+      base_url: https://api.siliconflow.cn/v1
+      model: BAAI/bge-m3
+      type: openai
+      vector_dimensions: 1024
+    vectorizer: *vectorize_model
+    ```
+    
+    注：向量模型无法混用，如果表示模型配置需要修改，建议新建知识库完成。
+    
+    # Ollama(本地模型服务)
+    ## 模型服务启动
+    + **安装ollama**
+        - **mac用户：**brew install ollama
+        - **windows和linux用户：**到[ollama官网](https://ollama.com/)下载ollama
+    + **启动模型服务：**
+        - **启动ollama: **
+    
+    ```shell
+    # 配置ollama监听来自所有地址的访问请求
+    $ export OLLAMA_HOST=0.0.0.0:11434
+    $ ollama serve
+    ```
+    
+        - **拉取模型：**
+    
+    ```shell
+    $ ollama pull bge-m3
+    ```
+    
+    即可开启模型服务
+    
+        - **查看模型列表**
+    
+    ```shell
+    $ ollama list
+    
+    NAME                                 ID              SIZE      MODIFIED     
+    bge-m3:latest                        790764642607    1.2 GB    25 hours ago    
+    qwen2.5:3b                           357c53fb659c    1.9 GB    9 days ago      
+    ```
+    
+        - **测试：**
+    
+    ```shell
+    # 发送测试请求
+    
+    $ curl http://127.0.0.1:11434/v1/embeddings -d '
+        {
+        "model": "bge-m3:latest",
+        "input": [
+            "work"
+        ]
+    }'
+    ```
+    
+    ## 产品模式配置
+    ### 配置项&示例
+    用户通过docker 部署的openspg-server后再创建知识库时进行向量配置
+    
+    + **配置项**
+    
+    model name 和 ollama list 所展示的一致。
+    
+    ![1737098674750-fb13d465-b8d6-463d-a305-c4c1a3ee8a6e.png](./img/3BYCA_HRGfTtRHSF/1737098674750-fb13d465-b8d6-463d-a305-c4c1a3ee8a6e-607708.png)
+    
+    + **配置示例**
+    
+    ```json
+    # replace base_url with real hostaddr
+    # OpenAIVectorizer will append postfix of "/embeddings", there is no need for user to provide it in the url
+    {
+      "type": "openai",
+      "model": "bge-m3:latest",
+      "base_url": "http://host.docker.internal:11434/v1",
+      "api_key": "empty",
+      "vector_dimensions": "1024"
+    }
+    ```
+    
+    注：向量模型无法混用，如果表示模型配置需要修改，建议新建知识库完成。
+    
+    ### 表示模型域名设置
+    当用户以产品模式运行 kag 时，涉及容器内访问容器外模型服务的诉求。对于如下情形：
+    
+    + **kag 容器与模型推理服务 部署于相同宿主机：**
+        - **Mac & Windows 环境：**容器中访问 host.docker.internal 可路由到宿主机上的服务，修改生成模型配置中，base_url 对应的域名即可。
+    
+    ```shell
+    # 宿主机上 ollama 加载的 bge-m3 模型服务，在容器中可通过如下方式访问
+    
+    $ curl http://host.docker.internal:11434/v1/embeddings -d '
+        {
+        "model": "bge-m3",
+        "input": [
+            "work"
+        ]
+    }'
+    ```
+    
+        - **Linux 环境：**容器中访问 172.17.0.1, 可通过访问docker0网络的网关从而访问宿主机，修改生成模型配置中，base_url 对应的域名即可。
+    
+    ```shell
+    # 宿主机上 ollama 加载的qwen2.5:3b 模型服务，在容器中可通过如下方式访问
+    
+    $ curl http://172.17.0.1:11434/v1/embeddings -d '
+        {
+        "model": "bge-m3",
+        "input": [
+            "work"
+        ]
+    }'
+    ```
+    
+    + **kag 容器与模型推理服务 部署于不同宿主机：**
+    
+    通过访问模型服务所在宿主机的ip 来实现请求路由。
+    
+    ## 开发者模式配置
+    用户可根据配置文件 kag_config.yml 中的 vectorize_model 条目自行更改 kag 所有环节依赖的表示模型。
+    
+    ```yaml
+    vectorize_model: &vectorize_model
+      api_key: EMPTY
+      base_url: http://127.0.0.1:11434/v1
+      model: bge-m3
+      type: openai
+      vector_dimensions: 1024
+    vectorizer: *vectorize_model
+    ```
+    
+    注：向量模型无法混用，如果表示模型配置需要修改，建议新建知识库完成。
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings)}
+{hitWord=https://chat.openai.com/)}
+{hitWord=https://cloud.siliconflow.cn/models)}
+{hitWord=https://account.siliconflow.cn/login)}
+{hitWord=https://api.siliconflow.cn/v1}
+{hitWord=https://api.openai.com/v1}
+{hitWord=https://platform.openai.com/docs/models/embeddings)}
+{hitWord=https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings)}
+{hitWord=https://docs.siliconflow.cn/api-reference/embeddings/create-embeddings)}
+{hitWord=https://chat.openai.com/)}
+{hitWord=https://api.siliconflow.cn/v1/embeddings}
+{hitWord=https://api.siliconflow.cn/v1}
+{hitWord=https://ollama.com/)}
+{hitWord=http://host.docker.internal:11434/v1}
+{hitWord=http://host.docker.internal:11434/v1/embeddings}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/模型服务配置/生成(chat)模型.md
+    文件行：1~301
+风险内容：
+    # 生成(chat)模型
+    
+    用户在为 kag 配置生成模型服务时，可以选配商业模型api(MaaS)，或基于vllm、ollama 拉起的本地模型服务。
+    
+    # **MaaS(****OpenAI兼容接口****)**
+    maas 是指（Model As Service）。kag 支持openai兼容类接口的所有在线大模型服务，如deepseek、qwen、openai 等。开发者可自行前往[deepseek官网](https://www.deepseek.com/)、[通义千问官网](https://tongyi.aliyun.com/)、[openai官网](https://chat.openai.com/)，提前完成账户的注册以及模型服务的开通，并获取api-key，填入到后续的项目配置中。
+    
+    ## 产品模式配置
+    用户通过Docker部署openspg-server后在模型配置页面进行设置，我们建议新手用户可使用商业模型API进行快速上手
+    
+    + **配置项**
+    
+    ![1736318955547-6303b371-746d-4774-802e-d75f444b9d47.png](./img/Anp0WKWPV3Cm-Hpb/1736318955547-6303b371-746d-4774-802e-d75f444b9d47-947324.png)
+    
+    + **配置示例**
+    
+    ```json
+    {
+      "type": "maas",
+      "base_url": "https://api.deepseek.com",
+      "api_key": "deepseek api key",
+      "model": "deepseek-chat",
+      "stream":"False",
+      "temperature":0.7
+    }
+    ```
+    
+    + **模型服务可用性测试**
+    
+    配置保存时，kag 会根据生成模型配置调用大模型api，如果调用失败则提示保存失败。用户可在openspg 容器中通过curl 命令验证服务的可达性、以及api-key 是否过期。
+    
+    ```bash
+    # 将获取到的api-key 替换掉下述命令中的 <DeepSeek API Key>
+    
+    $ curl https://api.deepseek.com/chat/completions \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer <DeepSeek API Key>" \
+      -d '{
+            "model": "deepseek-chat",
+            "messages": [
+              {"role": "system", "content": "You are a helpful assistant."},
+              {"role": "user", "content": "Hello!"}
+            ],
+            "stream": false
+          }'
+    ```
+    
+    ## 开发者模式
+    用户可根据配置文件 kag_config.yaml 中的[llm]条目自行更改kag所有环节依赖的大模型。
+    
+    ```python
+    chat_llm: &chat_llm
+      api_key: put your openai api key here
+      base_url: https://api.openai.com
+      model: gpt-3.5-turbo
+      type: maas
+    
+    ```
+    
+    ```python
+    # TongYi
+    chat_llm: &chat_llm
+      api_key: put your openai api key here
+      base_url: https://dashscope.aliyuncs.com
+      model: qwen-turbo
+      type: maas
+    ```
+    
+    ```python
+    # Deepseek
+    chat_llm: &chat_llm
+      api_key: put your openai api key here
+      base_url: https://api.deepseek.com
+      model: deepseek-chat
+      type: maas
+    ```
+    
+    注：开发者模式下，配置修改后，需要同步到服务端。具体参考文档：[更新项目配置](https://openspg.yuque.com/ndx6g9/docs/zxh5a5dr03945l1x#VxszD)。
+    
+    # Ollama/Vllm(本地模型服务)
+    ## 如何部署本地模型服务
+    kag 为 openai 类大模型推理服务对接提供了支持，用户可选择 ollama、vllm 等模型服务框架中的一个，自行搭建大模型推理服务。
+    
+    ### ollama 模型推理服务
+    + **安装ollama**
+        - **mac用户：**brew install ollama
+        - **windows和linux用户：**到[ollama官网](https://ollama.com/)下载ollama
+    + **启动模型服务：**
+        - **启动ollama: **
+    
+    ```shell
+    # 配置ollama监听来自所有地址的访问请求
+    $ export OLLAMA_HOST=0.0.0.0:11434
+    $ ollama serve
+    ```
+    
+        - **拉取模型：**
+    
+    ```shell
+    $ ollama pull qwen2.5:3b
+    ```
+    
+    即可开启模型服务
+    
+        - **查看模型列表**
+    
+    ```shell
+    $ ollama list
+    
+    NAME                                 ID              SIZE      MODIFIED     
+    bge-m3:latest                        790764642607    1.2 GB    25 hours ago   
+    qwen2.5:3b                           357c53fb659c    1.9 GB    9 days ago     
+    ```
+    
+        - **测试：**
+    
+    ```shell
+    # 发送测试请求
+    $ curl http://localhost:11434/v1/chat/completions \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "qwen2.5:3b",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "你是谁？"}
+            ]
+        }'
+    
+    $ {"id":"chatcmpl-360","object":"chat.completion","created":1732100271,"model":"qwen2.5:3b","system_fingerprint":"fp_ollama","choices":[{"index":0,"message":{"role":"assistant","content":"我是来自阿里云的大规模语言模型，我叫通义千问。很乐意为您提供帮助，请您告诉我您具体的问题或需求是什么，期待与您的交流合作！"},"finish_reason":"stop"}],"usage":{"prompt_tokens":22,"completion_tokens":37,"total_tokens":59}}
+    ```
+    
+    ### vllm 模型推理服务
+    根据 vLLM 官方博客 [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://blog.vllm.ai/2023/06/20/vllm.html)所说：进行了 NVIDIA A10 GPU 上推理 LLaMA-7 B 和 在 NVIDIA A100 GPU（40 GB）上推理 LLaMA-13 B 两个实验。**在吞吐量上 vLLM 比最基础的 HuggingFace Transformers 高 24 倍，比 TGI 高 3.5 倍**。
+    
+    + 首先要准备一个 GPU 环境，可以参考这篇文章：[GPU 环境搭建指南：如何在裸机、Docker、K8s 等环境中使用 GPU](https://www.lixueduan.com/posts/ai/01-how-to-use-gpu/)
+    + 为避免干扰，建议使用 conda 单独创建一个 Python 虚拟环境安装 vLLM。
+    
+    ```shell
+    # 配置conda 加速
+    
+    $ conda config --add channels https://mirrors.aliyun.com/anaconda/pkgs/main
+    $ conda create -n vllm_py310 python=3.10
+    
+    $ conda activate vllm_py310
+    
+    # 配置 pip 源
+    $ pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
+    
+    # 在虚拟环境中安装 vllm
+    $ pip install vllm
+    ```
+    
+    + 模型下载，可以通过modelsope下载模型
+    
+    ```shell
+    $ pip install modelscope
+    $ modelscope download --model Qwen/Qwen2.5-7B-Chat
+    ```
+    
+    + 启动vllm服务
+    
+    ```shell
+    modelpath=/path/to/model/Qwen2.5-7B-Chat
+    
+    # 单卡
+    python3 -m vllm.entrypoints.openai.api_server \
+            --model $modelpath \
+            --served-model-name qwen25-7B-chat \
+            --trust-remote-code
+    
+    ```
+    
+    + 发送测试请求
+    
+    ```shell
+    # model 就是前面启动服务时的 served-model-name 参数
+    curl http://localhost:8000/v1/chat/completions \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "qwen25-7B-chat",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "你是谁？"}
+            ]
+        }'
+    
+    ```
+    
+    ### 容器访问宿主机模型服务
+    当用户以产品模式运行 kag 时，涉及容器内访问容器外模型服务的诉求。对于如下情形：
+    
+    + **kag 容器与模型推理服务 部署于相同宿主机：**
+        - **Mac & Windows 环境：**容器中访问 host.docker.internal 可路由到宿主机上的服务，修改生成模型配置中，base_url 对应的域名即可。
+    
+    ```shell
+    # 宿主机上 ollama 加载的qwen2.5:3b 模型服务，在容器中可通过如下方式访问
+    $ curl http://host.docker.internal:11434/v1/chat/completions \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "qwen2.5:3b",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "你是谁？"}
+            ]
+        }'
+    ```
+    
+        - **Linux 环境：**容器中访问 172.17.0.1, 可通过访问docker0网络的网关从而访问宿主机，修改生成模型配置中，base_url 对应的域名即可。
+    
+    ```shell
+    # 宿主机上 ollama 加载的qwen2.5:3b 模型服务，在容器中可通过如下方式访问
+    $ curl http://172.17.0.1:11434/v1/chat/completions \
+        -H "Content-Type: application/json" \
+        -d '{
+            "model": "qwen2.5:3b",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "你是谁？"}
+            ]
+        }'
+    ```
+    
+    + **kag 容器与模型推理服务 部署于不同宿主机：**
+    
+    通过访问模型服务所在宿主机的ip 来实现请求路由。
+    
+    ## 模型服务配置
+    ### 产品模式配置
+    用户通过docker 部署的openspg-server后在模型配置页面进行设置
+    
+    + **配置项**
+    
+    model name 和 ollama list 所展示的一致。
+    
+    ![1736319065533-937b2605-04a5-4e62-8db7-be5fdf5873cf.png](./img/Anp0WKWPV3Cm-Hpb/1736319065533-937b2605-04a5-4e62-8db7-be5fdf5873cf-584361.png)
+    
+    + **ollama 配置示例**
+    
+    如果以ollama 加载模型提供模型推理服务，则设置 type = ollama。
+    
+    ```json
+    # localhost 需要根据实际情况改成对应域名，参考 "容器访问宿主机模型服务"一节
+    
+    {
+      "type": "ollama",
+      "base_url": "http://localhost:11434/",
+      "model": "qwen2.5:3b"
+    }
+    ```
+    
+    + **vllm 配置示例**
+    
+    如果以vllm 加载模型提供模型推理服务，则设置 type = vllm。
+    
+    ```json
+    # localhost 需要根据实际情况改成对应域名，参考 "容器访问宿主机模型服务"一节
+    
+    {
+      "type": "vllm",
+      "base_url": "http://localhost:8000/v1/chat/completions",
+      "model": "qwen25-7B-chat"
+    }
+    ```
+    
+    + **其它**
+    
+    如果用户倾向于使用其它的模型推理服务框架（如 xinference），可以自行搭建。调用前完成 设置type = vllm（相当于默认值），base_url = xx 即可。
+    
+    + **模型服务可用性测试**
+    
+    配置保存时，kag 会根据生成模型配置调用大模型api，如果调用失败则提示保存失败。用户可在openspg 容器中通过curl 命令验证服务的可达性，避免模型已停止服务影响调用。具体可参考 “容器访问宿主机模型服务”一节。
+    
+    ### 开发者模式配置
+    用户可根据配置文件 kag_config.yaml 中的[llm]条目自行更改kag所有环节依赖的大模型。
+    
+    开发者模式下，知识抽取、推理问答相关的大模型调用，是从kag 运行时所在的本地环境发起的。模型推理服务对应的域名，需要保证 kag 运行时所在的环境能够解析即可。
+    
+    + **ollama**
+    
+    ```python
+    # localhost 需要确保 能被kag 运行时所在的环境正确解析。
+    [llm]
+    type = ollama
+    base_url = http://localhost:11434/
+    model = qwen2.5:3b
+    ```
+    
+    + **vllm**
+    
+    ```python
+    # localhost 需要确保 能被kag 运行时所在的环境正确解析。
+    [llm]
+    type = vllm
+    base_url = http://localhost:8000/v1/chat/completions
+    model = qwen25-7B-chat
+    ```
+    
+    注：开发者模式下，配置修改后，需要同步到服务端。具体参考文档：[更新项目配置](https://openspg.yuque.com/ndx6g9/docs/zxh5a5dr03945l1x#VxszD)。
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://www.deepseek.com/)}
+{hitWord=https://chat.openai.com/)}
+{hitWord=https://api.deepseek.com}
+{hitWord=https://api.deepseek.com/chat/completions}
+{hitWord=https://api.openai.com}
+{hitWord=https://dashscope.aliyuncs.com}
+{hitWord=https://api.deepseek.com}
+{hitWord=https://openspg.yuque.com/ndx6g9/docs/zxh5a5dr03945l1x#VxszD)}
+{hitWord=https://ollama.com/)}
+{hitWord=https://blog.vllm.ai/2023/06/20/vllm.html)}
+{hitWord=https://www.lixueduan.com/posts/ai/01-how-to-use-gpu/)}
+{hitWord=http://host.docker.internal:11434/v1/chat/completions}
+{hitWord=https://openspg.yuque.com/ndx6g9/docs/zxh5a5dr03945l1x#VxszD)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/源码编译&部署.md
+    文件行：1~186
+风险内容：
+    # 源码编译&部署
+    
+    # 1、源码编译流程
+    ## 1.1、前置依赖
+    + **Java：**
+    
+    java 18 （推荐OpenJDK version 18）
+    
+    + **Maven：**
+    
+    maven 3.8（推荐Maven version 3.8.5）
+    
+    + **idea: **
+    
+    idea 社区版 2024.1.2 以上版本
+    
+    + **Scala：**
+    
+    idea安装scala插件
+    
+    ![1729737734254-1ddd4197-e5b6-472f-a33e-d1d78649b4f6.png](./img/7HMI8Q5FqBek98fp/1729737734254-1ddd4197-e5b6-472f-a33e-d1d78649b4f6-645878.png)
+    
+    并将reasoner下设置scala目录设置为Sources Root
+    
+    ![1729737684760-8fe4d941-7209-489b-8073-cfd0ce9c631d.png](./img/7HMI8Q5FqBek98fp/1729737684760-8fe4d941-7209-489b-8073-cfd0ce9c631d-747636.png)
+    
+    + **Lombok：**
+    
+    idea安装Lombok插件
+    
+    ![1729738095710-7d3a7ba9-96b9-489c-b30a-8340efc2d9c6.png](./img/7HMI8Q5FqBek98fp/1729738095710-7d3a7ba9-96b9-489c-b30a-8340efc2d9c6-687059.png)
+    
+    + **设置 Incrementality Type 为 IDEA**
+    
+    Settings > Build, Execution, Deployment > Compiler > Scala Compiler 设置 Incrementality Type 为 IDEA
+    
+    ![1737623612070-fed60917-f1c5-4489-b1aa-365535ba6503.png](./img/7HMI8Q5FqBek98fp/1737623612070-fed60917-f1c5-4489-b1aa-365535ba6503-722506.png)
+    
+    ## 1.2、源码下载
+    克隆 OpenSPG 源码，并在IDE中打开
+    
+    ```shell
+    $ git clone git@github.com:OpenSPG/openspg.git
+    
+    $ cd openspg
+    $ tree -L 1
+    .
+    ├── CITATION.cff
+    ├── LEGAL.md
+    ├── LICENSE
+    ├── README.md
+    ├── README_cn.md
+    ├── builder
+    ├── cloudext
+    ├── common
+    ├── dev
+    ├── lib
+    ├── pom.xml
+    ├── python
+    ├── reasoner
+    
+    ```
+    
+    ******后续命令执行都需在openspg代码库的根目录下**
+    
+    ## 1.3、源码编译
+    执行 mvn 编译命令
+    
+    ```shell
+    $ mvn clean install -Dmaven.test.skip=true -Dspotless.check.skip -Dspotless.apply.skip
+    ```
+    
+    ## 1.4、启动镜像
+    本地启动MySQL、Graph等容器
+    
+    ```plain
+    sh dev/test/docker-compose.sh
+    ```
+    
+    ## 1.5、启动server
+    启动 server 入口位于
+    
+    ```plain
+    com.antgroup.openspg.server.arks.sofaboot.Application
+    ```
+    
+    
+    
+    **目前前端代码暂未开源，如需使用 http://127.0.0.1:8887 进行前端可视化页面操作，请通过镜像安装**
+    
+    ****
+    
+    # 2、Mac 环境编译示例
+    环境： MacBook Air 
+    
+    芯片： Apple M1
+    
+    ## 2.1、安装Homebrew
+    安装Homebrew后用于后续安装 git、wget、java 等工具。如果已经安装可直接忽略
+    
+    ```shell
+    ## 安装Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ## 打开 并编辑.zshrc文件
+    vim ~/.zshrc
+    ## 在文件末尾添加以下行
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    ##运行以下命令使更改生效
+    source ~/.zshrc
+    ##检验 安装Homebrew 是否成功
+    brew --version
+    brew update
+    ```
+    
+    [此处为语雀卡片，点击链接查看](https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#UCqa2)
+    
+    
+    
+    ## 2.2、安装git、wget
+    ```shell
+    brew install git
+    brew install wget
+    git --version
+    wget --version
+    ```
+    
+    [此处为语雀卡片，点击链接查看](https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#rzpsS)
+    
+    
+    
+    ## 2.3、安装Maven、JAVA
+    ```shell
+    cd /Users/opt
+    ## 下载 maven 3.8.5
+    wget https://alipay-sdtag.oss-cn-qingdao.aliyuncs.com/openspg/apache-maven-3.8.5.zip
+    ## 解压
+    unzip apache-maven-3.8.5.zip
+    ## 下载JAVA 18 （其他环境版本可到 https://jdk.java.net/archive/ 进行手动下载）
+    wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_macos-aarch64_bin.tar.gz
+    ##解压
+    tar -xzvf openjdk-18.0.2_macos-aarch64_bin.tar.gz
+    
+    ##设置java和maven的环境变量
+    vim ~/.zshrc
+    ## PATH中添加java和maven地址，注意：/Users/opt 需修改为你本地的安装路径
+    export PATH="/Users/opt/jdk-18.0.2.jdk/Contents/Home/bin:/Users/opt/apache-maven-3.8.5/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    ##运行以下命令使更改生效
+    source ~/.zshrc
+    ##校验安装是否成功
+    java -version
+    mvn -v
+    ```
+    
+    [此处为语雀卡片，点击链接查看](https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#pXUIC)
+    
+    
+    
+    ## 2.4、下载OpenSPG源码编译并启动
+    ```shell
+    cd /Users/opt
+    
+    ## 下载openspg源码
+    git clone --depth=1 https://github.com/OpenSPG/openspg.git
+    
+    ## 1.通过IDEA打开OpenSPG
+    ## 2.安装Lombok和scala插件
+    ## 3.设置 Incrementality Type 为 IDEA
+    ##  Settings > Build, Execution, Deployment > Compiler > Scala Compiler 设置 Incrementality Type: Zinc -> IDEA
+    
+    ## 编译代码
+    mvn clean install -Dmaven.test.skip=true -Dspotless.check.skip -Dspotless.apply.skip
+    
+    ## 启动docker Docker Desktop安装地址(https://www.docker.com/products/docker-desktop/)
+    
+    ## 安装mysql、neo4j 镜像依赖
+    sh dev/test/docker-compose.sh
+    
+    ##启动应用
+    com.antgroup.openspg.server.arks.sofaboot.Application
+    
+    ```
+    
+    [此处为语雀卡片，点击链接查看](https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#AmMes)
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#UCqa2)}
+{hitWord=https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#rzpsS)}
+{hitWord=https://alipay-sdtag.oss-cn-qingdao.aliyuncs.com/openspg/apache-maven-3.8.5.zip}
+{hitWord=https://jdk.java.net/archive/}
+{hitWord=https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_macos-aarch64_bin.tar.gz}
+{hitWord=https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#pXUIC)}
+{hitWord=https://www.yuque.com/ndx6g9/docs/gowzigml9ay0pr4g#AmMes)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/自定义扩展/自定义schema.md
+    文件行：1~389
+风险内容：
+    # 自定义schema
+    
+    kag 支持业务自定义schema 以干预图谱构建、图谱推理的效果。
+    
+    kag 支持基于业务（结构化、非结构化）数据、专家规则等构建知识图谱。schema 强制约束结构化数据、专家规则的图谱构建，而针对非结构化数据，schema 只引导大模型实现知识抽取。
+    
+    # 1、spg schema 语法
+    openspg schema 的语法说明可参考 [声明式 schema](https://openspg.yuque.com/ndx6g9/docs/peb03cne0mky8i36)，其中涉及专家规则(DSL)的部分可参考 [专家规则（DSL）语法](https://openspg.yuque.com/ndx6g9/docs/gqpww8gfp36238f4)。
+    
+    业务场景具体的schema 示例可参考[Medicine.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/medicine/schema/Medicine.schema)、[RiskMining.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/riskmining/schema/RiskMining.schema)、[SupplyChain.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/supplychain/schema/SupplyChain.schema)、[HotpotQA.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/hotpotqa/schema/HotpotQA.schema)、[TwoWiki.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/2wiki/schema/TwoWiki.schema)、[MuSiQue.schema](https://github.com/OpenSPG/KAG/blob/master/kag/examples/musique/schema/MuSiQue.schema) 等。
+    
+    + **RiskMining.schema **
+    
+    以RiskMining.schema 中 为例，TaxOfRiskUser 是一种描述风险用户分类的概念，Company 是一种描述企业的实体类型，Person 是一种描述自然人的实体类型。Person 实体类型中可定义属性、关系；区别在于，属性值的类型是基础类型（Text、Integer、Date 等）或者概念类型，关系类型的终点是另外一种实体类型。
+    
+    关系的存在性可通过dsl规则来表达，如Person-developed->App 定义了一种"自然人-开发->App"的关系，该关系未显式存在于事实数据中，是在事实数据（Person-hasDevice->Device, Device-install->App）基础上N次加工（基于业务规则的聚合、统计等）后得到。
+    
+    实践中，事实数据、业务规则更新往往比较频繁，需要确保事实数据更新后、与之对应的业务规则推理结果也能随之更新；spg schema 提供的基于 dsl 规则表达的关系，在图谱N度推理时通过实时计算生成，能较好的契合该需求。
+    
+    ```yaml
+    TaxOfRiskUser(风险用户): ConceptType
+    	hypernymPredicate: isA
+    	
+    TaxOfRiskApp(风险应用): ConceptType
+    	hypernymPredicate: isA
+    
+    Cert(证书): EntityType
+    	properties:
+    		certNum(证书编号): Text
+    		
+    Company(企业): EntityType
+    	properties:
+    		hasPhone(电话号码): Text
+    	relations:
+    		hasCert(拥有证书): Cert
+    		holdShare(持股): Company
+    		
+    App(应用): EntityType
+    	properties:
+    		riskMark(风险标记): Text
+    		useCert(使用证书): Cert
+    		IND#belongTo(属于): TaxOfRiskApp
+    
+    Person(自然人): EntityType
+    	properties:
+    		age(年龄): Integer
+    		hasPhone(电话号码): Text
+    		IND#belongTo(属于): TaxOfRiskUser
+    	relations:
+    		hasDevice(拥有设备): Device
+    		hasCert(拥有证书): Cert
+    		holdShare(持股): Company
+    		fundTrans(转账关系): Person
+    			properties:
+    				transDate(交易日期): Text
+    				transAmt(交易金额): Integer
+    		developed(开发): App
+    			rule: [[
+    			        Define (s:Person)-[p:developed]->(o:App) {
+    				        STRUCTURE {
+    				          	(s)-[:hasDevice]->(d:Device)-[:install]->(o)
+    				        }
+    						CONSTRAINT {
+    						   deviceNum = group(s,o).count(d)
+    						   R1("设备超过5"): deviceNum > 5
+    						}
+    					}
+          			  ]]
+        release(发布): App
+    			rule: [[
+    			        Define (s:Person)-[p:release]->(o:App) {
+                            STRUCTURE {
+    						    (s)-[:holdShare]->(c:Company),
+    						    (c)-[:hasCert]->(cert:Cert)<-[useCert]-(o)
+    					    }
+    					    CONSTRAINT {
+    					    }
+    					}
+          			  ]]
+    ```
+    
+    + **HotpotQA.schema **
+    
+    HotpotQA、Musique等开放域数据集，包含的内容多而繁杂，难以准确定义可适配所有实体实例的schema。比如，作为演员的周杰伦、作为军事家&政治家的曹操，在Person(自然人) 层面，其关联的属性、关系差别较大。
+    
+    与结构化数据图谱构建所施加的强schema 约束不同，针对开放域数据，KAG 采用了semi-schema约束的方式引导大模型完成知识抽取，以兼顾知识的准确性、逻辑严密性、上下文的完整性。
+    
+    以hotpotqa.schema 为例，针对开放阈数据集，Person 实体类型中只预定义了desc（实体描述）、semanticType（实体语义类型 也即 细分类型）等基础属性，以及内置的id、name 属性。扩展属性&关系，是通过schema + prompt 引导大模型完成的知识抽取。
+    
+    ```yaml
+    Chunk(文本块): EntityType
+         properties:
+            content(内容): Text
+                index: TextAndVector
+    
+    Person(人物): EntityType
+         properties:
+            desc(描述): Text
+                index: TextAndVector
+            semanticType(语义类型): Text
+                index: Text
+    
+    Transport(运输): EntityType
+         properties:
+            desc(描述): Text
+                index: TextAndVector
+            semanticType(语义类型): Text
+                index: Text
+    
+    Works(作品): EntityType
+         properties:
+            desc(描述): Text
+                index: TextAndVector
+            semanticType(语义类型): Text
+                index: Text
+    ```
+    
+    kag 产品中内置的、针对开放域数据集的schema，在面向特定领域的知识抽取任务时难以达到预期，需要开发者自行设计一些领域相关的schema，作为prompt 的一部分引导大模型完成知识抽取。
+    
+    同时，kag 团队会不断发布一些领域相关schema，供使用者参考。
+    
+    # 2、schema 文件提交&更新
+    以riskmining 场景为例，schema 文件一般位于./${bizScene}/schema/目录下，包括spg 格式的schema 文件以及rule 文件。
+    
+    ```yaml
+    examples
+    ├──riskmining
+        ├── builder
+        ├── reasoner
+        ├── schema
+        │   ├── RiskMining.schema
+        │   └── concept.rule
+        └── solver
+    
+    ```
+    
+    + schema 文件提交
+    
+    schema 文件在提交时会做严格的格式校验，包括缩进空格数、关键字命名等；如果提交时未报错，则定义的schema 可在后续流程中使用。
+    
+    ```bash
+    $ cd examples/riskmining/
+    # commit schema file
+    $ knext schema --help
+    Usage: knext schema [OPTIONS] COMMAND [ARGS]...
+    
+      Schema client.
+    
+    Options:
+      --help  Show this message and exit.
+    
+    Commands:
+      commit            Commit local schema and generate schema helper.
+      reg_concept_rule  Register a concept rule according to DSL file.
+      
+    $ knext schema commit
+    
+    # commit rule file
+    $ knext schema reg_concept_rule --help
+    Usage: knext schema reg_concept_rule [OPTIONS]
+    
+      Register a concept rule according to DSL file.
+    
+    Options:
+      --file TEXT  Path of DSL file.
+      --help       Show this message and exit.
+    $ knext schema reg_concept_rule ./schema/concept.rule
+    ```
+    
+    + schema 文件更新
+    
+    schema 文件更新后，可通过knext 命令再次提交到服务端。
+    
+    # 3、schema 如何发挥作用
+    ## 3.1、非结构化数据的知识抽取
+    + **开放域实体抽取**
+    
+    ```json
+    {
+        "instruction": "You're a very effective entity extraction system. Please extract all the entities that are important for knowledge build and question, along with type, category and a brief description of the entity. The description of the entity is based on your OWN KNOWLEDGE AND UNDERSTANDING and does not need to be limited to the context. the entity's category belongs taxonomically to one of the items defined by schema, please also output the category. Note: Type refers to a specific, well-defined classification, such as Professor, Actor, while category is a broader group or class that may contain more than one type, such as Person, Works. Return an empty list if the entity type does not exist. Please respond in the format of a JSON string.You can refer to the example for extraction.",
+        "schema": $schema,
+        "example": [
+            {
+                "input": "The Rezort\nThe Rezort is a 2015 British zombie horror film directed by Steve Barker and written by Paul Gerstenberger.\n It stars Dougray Scott, Jessica De Gouw and Martin McCann.\n After humanity wins a devastating war against zombies, the few remaining undead are kept on a secure island, where they are hunted for sport.\n When something goes wrong with the island's security, the guests must face the possibility of a new outbreak.",
+                "output": [
+                            {
+                                "entity": "The Rezort",
+                                "type": "Movie",
+                                "category": "Works",
+                                "description": "A 2015 British zombie horror film directed by Steve Barker and written by Paul Gerstenberger."
+                            },
+                            {
+                                "entity": "British",
+                                "type": "Nationality",
+                                "category": "GeographicLocation",
+                                "description": "Great Britain, the island that includes England, Scotland, and Wales."
+                            },
+                            {
+                                "entity": "Steve Barker",
+                                "type": "Director",
+                                "category": "Person",
+                                "description": "Steve Barker is an English film director and screenwriter."
+                            },
+                            {
+                                "entity": "Paul Gerstenberger",
+                                "type": "Writer",
+                                "category": "Person",
+                                "description": "Paul is a writer and producer, known for The Rezort (2015), Primeval (2007) and House of Anubis (2011)."
+                            },
+                            {
+                                "entity": "Dougray Scott",
+                                "type": "Actor",
+                                "category": "Person",
+                                "description": "Stephen Dougray Scott (born 26 November 1965) is a Scottish actor."
+                            },
+                            {
+                                "entity": "Jessica De Gouw",
+                                "type": "Actor",
+                                "category": "Person",
+                                "description": "Jessica Elise De Gouw (born 15 February 1988) is an Australian actress. "
+                            },
+                            {
+                                "entity": "Martin McCann",
+                                "type": "Actor",
+                                "category": "Person",
+                                "description": "Martin McCann is an actor from Northern Ireland. In 2020, he was listed as number 48 on The Irish Times list of Ireland's greatest film actors"
+                            }
+                        ]
+            }
+        ],
+        "input": "$input"
+    }
+    ```
+    
+    + **医疗领域实体抽取**
+    
+    ```json
+    {
+            "instruction": "你是命名实体识别的专家。请从输入中提取与模式定义匹配的实体。如果不存在该类型的实体，请返回一个空列表。请以JSON字符串格式回应。你可以参照example进行抽取。",
+            "schema": $schema,
+            "example": [
+                {
+                    "input": "烦躁不安、语妄、失眠酌用镇静药，禁用抑制呼吸的镇静药。\n3.并发症的处理经抗菌药物治疗后，高热常在24小时内消退，或数日内逐渐下降。\n若体温降而复升或3天后仍不降者，应考虑SP的肺外感染。\n治疗：接胸腔压力调节管＋吸引机负压吸引水瓶装置闭式负压吸引宜连续，如经12小时后肺仍未复张，应查找原因。",
+                    "output": [
+                            {"entity": "烦躁不安", "category": "Symptom"},
+                            {"entity": "语妄", "category": "Symptom"},
+                            {"entity": "失眠", "category": "Symptom"},
+                            {"entity": "镇静药", "category": "Medicine"},
+                            {"entity": "肺外感染", "category": "Disease"},
+                            {"entity": "胸腔压力调节管", "category": "MedicalEquipment"},
+                            {"entity": "吸引机负压吸引水瓶装置", "category": "MedicalEquipment"},
+                            {"entity": "闭式负压吸引", "category": "SurgicalOperation"}
+                        ]
+                }
+            ],
+            "input": "$input"
+        }
+    ```
+    
+    // 医疗领域知识抽取需要强化，将属性、关系等信息加进来。
+    
+    ## 3.2、结构化数据的图谱构建
+    + **schema of EntityType**
+    
+    ```python
+    Company(企业): EntityType
+    	properties:
+    		hasPhone(电话号码): Text
+    	relations:
+    		hasCert(拥有证书): Cert
+    		holdShare(持股): Company
+    ```
+    
+    + **data to build**
+    
+    ```python
+    id,name,hasPhone
+    0,**娱乐****公司,150****3237
+    1,**娱乐**公司,133****4755
+    2,**娱乐***公司,152****7817
+    3,哈尔*工***技术产**发**限公司,196****5023
+    4,中国**业建*股*限公司,137****3517
+    5,莲花*康**集**份限公司,190****4555
+    6,深圳***智能*气**限公司,132****0163
+    7,中信*投证***限公司,133****1366
+    8,航天彩**人*股*限公司,156****6507
+    9,供销*集*团**限公司,156****3837
+    ```
+    
+    + **BuilderChain**
+    
+    ```python
+    class RiskMiningEntityChain(BuilderChainABC):
+        def __init__(self, spg_type_name: str):
+            super().__init__()
+            self.spg_type_name = spg_type_name
+    
+        def build(self, **kwargs):
+            source = CSVReader(output_type="Dict")
+            mapping = SPGTypeMapping(spg_type_name=self.spg_type_name)
+            vectorizer = BatchVectorizer()
+            sink = KGWriter()
+    
+            chain = source >> mapping >> vectorizer >> sink
+            return chain
+    
+    RiskMiningEntityChain(spg_type_name="Company").invoke(os.path.join(file_path, "data/Company.csv"))
+    ```
+    
+    SPGTypeMapping 会解析csv 文件的fieldName，并映射到EntityType 定义的properties 属性上。
+    
+    ## 3.3、图谱推理 
+    为了更清晰地描述图谱推理问答的技术实现，本文从数据建模的角度进行分类，将图谱推理问答分为以下两类：
+    
+    1. 已有数据建模的推理：针对具有明确数据模式（schema）的结构化数据。
+    2. 无数据建模的推理：针对缺乏明确数据模式的非结构化数据。
+    
+    以下分别对两类推理的技术实现进行详细说明。
+    
+    图谱推理问答中，我们分为结构化数据推理和非结构化数据推理
+    
+    ### 3.3.1、已有数据建模的推理
+    已有数据建模的推理主要针对结构化数据，其特点是数据具有明确的数据模式（schema），通常规模较小但可能包含复杂的业务经验。在大模型应用于此类数据时，主要面临以下挑战：
+    
+    1. 数据规模限制：大模型无法直接处理海量结构化数据。
+    2. 知识依赖不足：大模型对底层数据的依赖知识较为缺乏。
+    
+    在上面两个问题的前提下，想要实现结构化数据上的问答服务，最有挑战的问题主要是如何将自然语言转换成图谱查询步骤，要解决这个问题，则必须要让Plan模块知道底层图谱数据是如何存储和表达的，SPG-Schema则是我们图谱知识表达的总体描述，可以借助SPG-Schema让Plan模块理解图谱知识表达。
+    
+    为了更简洁、精确的表达知识，SPG-Schema中设计了一套逻辑规则层，可以让业务专家通过DSL解耦具体数据和业务的表达。具体可以参见SPG白皮书中的内容。
+    
+    下面以RiskMining中的例子来说明
+    
+    RiskMining中，最重要的需求就是如何判定用户的风险类别，所以schema中定义了一个逻辑推导关系（IND#belongTo）
+    
+    ```plain
+    TaxOfRiskUser(风险用户): ConceptType
+    	hypernymPredicate: isA
+    
+    Person(自然人): EntityType
+    	properties:
+    		age(年龄): Integer
+    		hasPhone(电话号码): Text
+    		IND#belongTo(属于): TaxOfRiskUser
+    ```
+    
+    在concept.rule中存有具体的逻辑表达，此处不再赘述。
+    
+    在规划阶段，我们向大模型提供了这么一个shot
+    
+    ```plain
+    {
+        "Action": "张*三是一个赌博App的开发者吗?",
+        "answer": "Step1:查询是否张*三的分类
+                  Action1:get_spo(s=s1:自然人[张*三], p=p1:属于, o=o1:风险用户)
+                  Output:输出o1
+                  Action2:get(o1)"
+    }
+    ```
+    
+    这里(自然人)-[属于]->(风险用户)是在schema中定义的一个逻辑边。执行器在执行该logic form表达式会转换成如下的查询语句
+    
+    ```cypher
+    MATCH 
+      (s1:Person)-[p1:belongTo]->(o1:TaxOfRiskUser)
+    WHERE
+      s1.id="张*三"
+    RETURN
+      o1
+    ```
+    
+    从而触发OpenSPG的推理引擎，将张某得风险分类结果返回。
+    
+    一方面SPG-Schema通过专家规则逻辑增加了面向业务领域的关系属性表达，另一方面也降低了大模型在规划阶段对领域知识理解，通过两者结合，实现结构化数据上的问答应用
+    
+    ### 3.3.2、无数据建模的推理
+    非数据建模的推理主要针对非结构化数据，其特点是缺乏明确的数据模式（schema），数据形式多样且灵活性高。在此类场景中，系统无法依赖预设的schema优化规划器（Planner），而是采用弱schema约束机制，通过实体类型（Entity）表达任意类型的数据。
+    
+    1. 弱schema约束机制  
+    在非数据建模的场景中，OpenSPG通过实体类型（Entity）表达任意类型的数据，并基于领域知识进行推理规划。这种设计使系统能够适应非结构化数据的高灵活性和多样性需求。
+    2. 领域知识的应用  
+    无数据模型也可以参考3.3.1中的方式进行扩展，系统通过领域知识库或预定义的规则对非结构化数据进行结构化转换，进而实现推理。
+    3. 动态schema扩展  
+    在非数据建模的场景中，系统可能需要动态扩展schema以适应新的数据类型和关系。这种动态扩展能力使系统能够灵活应对开放领域的高复杂性。
+    
+    
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://openspg.yuque.com/ndx6g9/docs/peb03cne0mky8i36)}
+{hitWord=https://openspg.yuque.com/ndx6g9/docs/gqpww8gfp36238f4)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/知识推理语法/专家规则（DSL）语法.md
+    文件行：1~1101
+风险内容：
+    # 专家规则（DSL）语法
+    
+    注：KGDSL不区分大小写
+    
+    ## 1 保留关键词
+    ### 1.1 常用关键词
+    | 关键词 | 描述 | 作用范围 |
+    | --- | --- | --- |
+    | Define | 定义关键词 | 全局 |
+    | Structure | 子图描述关键词 | 全局 |
+    | Constraint | 规则描述关键词 | 全局 |
+    | Action | 后置动作关键词 | 全局 |
+    | / | 概念引用分隔符 | 全局 |
+    | group | 图分组关键词 | Constraint |
+    | sum/filter/find/sort/slice   /count/max/min/avg/concat | 图聚合操作算子 | Constraint的group后 |
+    | and/or/not/xor/optional | 逻辑计算算子 | 全局 |
+    
+    
+    ### 1.2 特殊关键词
+    | 关键词 | 描述 | 作用范围 |
+    | --- | --- | --- |
+    | **start** | 起点标志 | Structure |
+    | **per_node_limit** | 边限制标志 | Structure |
+    | **label** | 得到点边的类型 | Constraint/Action |
+    | **property_map** | 将图节点或者边的属性生成map对象 | Constraint/Action |
+    | **path** | 得到满足的路径 | Constraint/Action |
+    | **id** | 图谱点内部id（全局唯一） | Constraint/Action |
+    | **from** | 图谱边的起点内部id | Constraint/Action |
+    | **to** | 图谱边的终点内部id | Constraint/Action |
+    
+    
+    ## 2 数据类型
+    ### 2.1 基本数据类型
+    | 数据类型 | 描述 | 示例 |
+    | --- | --- | --- |
+    | int | 整型 | 1，2，3 |
+    | float | 浮点型 | 23.11 |
+    | string | 字符串 | "abcdef" |
+    | bool | 布尔类型 | true/false |
+    | null | 空 | null |
+    
+    
+    ### 2.2 复杂数据类型
+    | 数据类型 | 描述 | 示例 |
+    | --- | --- | --- |
+    | list | 数组类型 | [1,2,3] |
+    | multi_version | 多版本属性 | `{     "20220111":value,     "20220112":value,   }` |
+    | date | 日期类型 | / |
+    | node | 点类型 | `{     "id":123456,     "label":"Film",     "property":{"name":"Titanic"}   }` |
+    | edge | 边类型 | `{     "from":1234,     "to":4321,     "label":"starOfFilm",     "property":{"year":1989}   }` |
+    
+    
+    ## 3 表达式算子
+    ### 3.1 表达式风格
+    我们表达式采用过程式+链式两种方式混合表达
+    
+    > 链式思想：是将多个操作（多行代码）通过点号(.)链接在一起成为一句代码,使代码可读性好。  
+    过程式思想：通过多行的方式，描述一段计算内容
+    >
+    
+    链式风格非常适用于数据计算，如下例，我们需要计算一个表达式(1 + 2) * 3 - 4，约束为一次只能计算一次，则过程式如下
+    
+    > a = 1+2  
+    b = a *3  
+    d = b -4
+    >
+    
+    使用链式风格
+    
+    > add(1,2).multiply(3).subtract(4)
+    >
+    
+    一行可以表达一个完整的计算流，我们可以在做数据计算时使用该风格
+    
+    ### 3.2 计算运算符
+    | 符号 | 示例 | 含义 | 备注 |
+    | --- | --- | --- | --- |
+    | + | a+b | 加法 | |
+    | - | a-b | 减法 | |
+    | * | a*b | 乘法 | |
+    | / | a/b | 除法 | 不可除0 |
+    | % | a%b | 取模 | b不可为0 |
+    | = | a=b | 赋值操作 | |
+    
+    
+    ### 3.3 逻辑运算符
+    | 符号 | 示例 | 含义 | 备注 |
+    | --- | --- | --- | --- |
+    | and | a and b | 且 | |
+    | or | a or b | 或 | |
+    | not，! | not a, !a | 非 | not可作用于全局，但!只能作用于Constraint |
+    | xor | a xor b | 异或 | |
+    | optional | optional (a)-[e]->(b) | 对路径表示可选 | 只在Structure中对路径生效 |
+    
+    
+    ### 3.4 比较运算符
+    | 符号 | 示例 | 含义 | 备注 |
+    | --- | --- | --- | --- |
+    | == | a == b | 判等 | 只可比较int、float、string、node、edge，   其中，node、edge以id判断为准 |
+    | > | a > b | 大于 | |
+    | >= | a>=b | 大于等于 | |
+    | `<` | `a < b` | 小于 | |
+    | `<=` | `a<=b` | 小于等于 | |
+    | != | a != b | 不等 | |
+    | in | a in [1,2,3] | 包含 | |
+    | BT | a bt [1,5]    a bt (1,5) | between运算符，表示a在1，5之间，方括号表示闭区间，圆括号表示开区间 | 只可比较int、float、string |
+    
+    
+    ### 3.5 字符串运算符
+    | 符号 | 示例 | 含义 | 返回值 | 备注 |
+    | --- | --- | --- | --- | --- |
+    | contains | contains(a,b) | 判断a字符串是否包含b字符串 | bool | |
+    | like，not like | a like b，a not like b | 字符串匹配判断，%为通配符 | bool | "abc" like "a%" 为true |
+    | concat，+ | concat(a,b)，a+b，    concat(a,b,c)，a+b+c     concat(a,...,f), a+...+f | 字符串拼接，concat支持n个入参，也可用+处理 | string | 暂未实现 |
+    | length | length(a) | 返回字符串长度 | int | |
+    | strstr | strstr(str,start)     strstr(str,start,end) | 得到字符串子串，从1开始 | string | 暂未实现 |
+    | lower | lower(a) | 全部转换成小写 | string | 暂未实现 |
+    | upper | upper(a) | 全部转换成大写 | string | 暂未实现 |
+    | is_not_blank | is_not_blank(a) | 字符串不为空："" | bool | 暂未实现 |
+    
+    
+    ### 3.6 类型转换运算符
+    | 符号 | 示例 | 含义 | 支持情况 |
+    | --- | --- | --- | --- |
+    | cast(a, 'int'/'float'/'string') |  cast(1,'string') //转化成为str     cast('1', 'int') //转换成int | 将基本类型转换成为其他基本类型 | |
+    | to_date(time_str,format) | to_date('20220101', 'yyMMdd') //转换成为日期 | 将字符串转换成为日志类型   format可以为如下组合<br/>时间类型     - s，秒//unix时间戳起    - m，分     - h，小时     - d，天     - M，月     - y，年     可组合，各种合理格式     - yyMMdd 年月日类型     - yyMMdd hh:mm:ss 为简化使用，支持数字@日期方式初始化时间 | 暂未实现 |
+    | window(version_express, unit) | `A.cost_every_day //A为用户，cost_every_day为一个多版本属性，表示每日的花销    A.cost_every_day.window(cur in [1@M,2@M,3@M], M) //获取1月、2月、3月的数据，按月取数据    A.cost_every_day.window(start > -30@d, d) //取近30天的数据，按天取数据    A.cost_every_day.window(end <-15@d, d) //取15天天前的所有数据,，按天取数据    A.cost_every_day.window(start > -30@d and end <-15@d, d) //取30天前，到15天前的数据，按天取数据，可进行组合<br/>   A.cost_every_day.window( (start > -30@d and end <-15@d) and (start > -7@d), d) //取30天前，到15天前的数据，以及近7天的数据，按天取数据，可进行组合` | 将多版本类型（multi_version）转换成list，方便参与计算。**version_express**包含三个关键词   - start，起始版本号   - end，终点版本号   - cur，当前版本号表达式为逻辑表达式，可通过and/or进行组合   **unit** 为属性单位，有如下类型   - M，按月获取数据   - d，按天获取数据   - seq，默认值，按照序列取数据，当没有unit时，按照seq来处理   注意：若是按月或者按天获取数据，则需要存在按天和按月聚合的数据 | 暂未实现 |
+    
+    
+    ### 3.7 list运算符（未实现）
+    由于list可以支持的类型为有int、float、string、node、edge，故list支持的运算符按照不同类型进行区分。  
+    针对list对象，我们采用链式风格对列表进行计算。  
+    假设定义一个数组:
+    
+    ```plain
+    array = [{age:10},{age:20},{age:30}]
+    ```
+    
+    对该数组的操作预算符用法如下：
+    
+    | 符号表示 | 示例 | 含义 | 输入类型 | 输出类型 | 元素类型 |
+    | --- | --- | --- | --- | --- | --- |
+    | max(alias_name) | array.mark_alias(a).max(a.age)    //输出为30 | 取最大值 | list | int/float/string | 支持int、float、string，但node和edge对象的属性为基础类型的可以支持 |
+    | min(alias_name) | array.mark_alias(a).min(a.age)    //输出为10 | 取最小值 | list | int/float/string | 支持int、float、string，但node和edge对象的属性为基础类型的可以支持 |
+    | sum(alias_name) | array.mark_alias(a).sum(a.age)   // 输出为60 | 对数组进行累加 | list | int/float | 支持int、float、string，但node和edge对象的属性为基础类型的可以支持 |
+    | avg(alias_name) | array.mark_alias(a).avg(a.age)   // 输出为20 | 取均值 | list | int/float | 支持int、float、string，但node和edge对象的属性为基础类型的可以支持 |
+    | count() | array.count()    //输出为3 | 取数组大小 | list | int | 支持所有类型 |
+    | filter(operator_express) | `array.mark_alias(a).filter(a.age <18)    //输出为[{age:10}]` | 对数组进行过滤，返回新的数组 | list | list | 支持所有类型 |
+    | sort(alias_name, 'desc'/'asc') | `array.mark_alias(a).sort(a.age, 'desc')   //输出为[{age:30},{age:20},{age:10}]` | 排序 | list | list | 支持所有类型 |
+    | slice(start_index,end_index) | `array.mark_alias(a).slice(1,2)   //获取第一个到第二个的内容，输出为[{age:10},{age:20}]` | 切片，从指定起点index到终点index，起点为1，取闭区间   - start_index，起点的index   - end_index，终止的index | | | 支持所有类型 |
+    | get(index) | `array.mark_alias(a).get(1)   //获取第一个到第二个的内容，输出为{age:10}` | 获取第index个元素，从1开始   若超过大小，则返回null | | | |
+    | str_join(alias_name, tok) | array.mark_alias(a).str_join(cast(a.age, 'string'), ',')    //将年龄转换成字符串，并且通过逗号生成字符串，输出为"10,20,30" | 字符串连接   - alias_name，数组中元素别名   - tok，连接符 | | | 只支持string |
+    | accumlate(operator, alias_name) | array.mark_alias(a).accumlate('*', a.age) //累乘，结果为6000    array.mark_alias(a).accumlate('+', a.age) //累加等同于sun，输出为60 | 累计计算算子   - operator，为*/   - alias_name，数组中元素别名 | | | 支持*，+ |
+    
+    
+    ### 3.8 图聚合运算符
+    由于常常存在对图的聚合计算，此处定义一个图聚合算子，可以将一个子图按照指定模式聚合，并且根据别名进行数组计算,注意
+    
+    | 符号 | 示例 | 含义 | 输入类型 | 输出类型 | 备注 |
+    | --- | --- | --- | --- | --- | --- |
+    | group() | group(a)，group(a,b) | 将点或者边进行聚合，返回数组 | 图类型 | 后面需待具体算子，输出为数组 | 输入只能是点类型或者边类型，且必须带上起点 |
+    
+    
+    图分组解释，假设我们存在如下数据：
+    
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071854-4b3ea4e8-69b7-46b3-b441-49ec5f4ce6d1-369134.png)
+    
+    查询的子图模式为：
+    
+    
+    
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071733-0c347ffe-5371-4885-916a-de1c2641d134-765807.png)
+    
+    不同的group表达的结果如下：
+    
+    #### 3.8.1 示例1：group(A)
+    此时对A进行分组，则如下操作返回的值为
+    
+    > 返回类型为列表，由于整个子图分组成为了1个，所以返回的列表长度为1，后续结果只能输出1行数据  
+      
+    group(A).count(e1) // 对e1边进行计数，应当返回[2]   
+      
+    group(A).count(B) // 对子图的B类型进行统计计数，应当返回[2]   
+      
+    group(A).count(C) // 对子图的C类型进行统计计数，应当返回[4]   
+      
+    group(A).count(e2) //对e2的边进行计数，应当返回[5], 因为有5条边 
+    >
+    
+    #### 3.8.2 实例2：group(A,B)
+    被分组的图数据变成  
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071733-0c347ffe-5371-4885-916a-de1c2641d134-765807.png)
+    
+    > 返回类型为列表，由于整个子图分组成为了2个，所以返回的列表长度为2，后续结果只能输出2行数据   
+      
+    group(A,B).count(A) // 返回[1,1]   
+      
+    group(A,B),count(B) // 返回[1,1]   
+      
+    group(A,B).count(C) // 返回[3,1]   
+      
+    group(A,B).count(e1) // 返回[1,1]   
+      
+    group(A,B).count(e2) //返回[3,2] 
+    >
+    
+    #### 3.8.3 实例3：group(A,B,C)
+    被分组的图数据变成如下  
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071750-72fd9f39-f059-420f-8876-161c936dd618-797215.png) 
+    
+    > 返回类型为列表，由于整个子图被分为了4个子图，所以返回的列表长度为4，后续结果只能输出4行数据   
+      
+    group(A,B,C).count(C) // 返回[1,1,1,1]   
+      
+    group(A,B,C).count(e2) // 返回[1,1,1,2] 
+    >
+    
+    注：由于子图可能被划分成为多个子图，并不对最终返回的数组保证顺序
+    
+    #### 3.8.4 约束和限制
+    ##### 约束1：不允许不包含起点
+    + group(B)/group(C) ,不允许分组时不包含起点，因为这样分组不能保证正确性
+    
+    ##### 约束2：不允许按边分组
+    + group(A, e1)/group(A, e2)，不允许按照边进行分组，因为存在两个相同点之间多边场景，如果允许按边聚合，则会出现大量的重复节点，导致后续计算消耗激增，且目前尚未看到有必须按边聚合场景
+    
+    ##### 约束3：若使用了多个group，则不允许后出现的group点比前出现的group点多
+    ```plain
+    //结果不可预期
+    bNum = group(A).count(B)
+    eNum = group(A,B).count(e1)
+    ```
+    
+    ```plain
+    //结果符合预期
+    eNum = group(A,B).count(e1)
+    bNum = group(A).count(B)
+    ```
+    
+    原因为，当group(A)分组后，B会折叠，此时在对A，B进行group会导致结果不正确，这里主要是考虑实现因素的约束
+    
+    ### 3.9 取数操作符
+    为方便对图进行取数据，设定算子如下
+    
+    | 符号 | 示例 | 含义 | 备注 |
+    | --- | --- | --- | --- |
+    | . | A.id | 取属性 | |
+    | **label** | A.**label** | 返回类型 | |
+    | **from** | e.**from** | 返回起点id | |
+    | **to** | e.**to** | 返回终点id | |
+    | **direction** | e.**direction** | 取边的方向 | |
+    
+    
+    由于KGDSL中不支持if语法，所以需要针对逻辑判断部分，使用类条件运算符算子代替  
+      
+    **rule_value**
+    
+    + 范式：rule_value (rule_name, true_value, false_value)
+    + 作用：将规则真值转换为指定值，如果rule_name的规则运算结果为true，则返回true_value,如果为false，则返回falsevalue  
+    举例：
+    
+    ```plain
+    //如果OnlineDiscount这个规则的运算结果为true，则返回1，否则返回null。
+    rule_value("OnlineDiscount", 1, null)
+    ```
+    
+    **get_first_notnull**
+    
+    + 范式：get_first_notnull (value1, value2, ..., valueN)
+    + 作用：表示返回参数里第一个不为null的值，参数区为可变长度，可实现优先级的结果获取
+    
+    ```plain
+    Share10("分享超10笔"): rakeBackCount > 10
+    Share100("分享超100笔"): rakeBackCount > 100
+    Price("定价")= get_first_notnull(rule_value("Share100", 0.5, null), rule_value("Share10", 0.8, null))
+    ```
+    
+    通过上面两个udf组合，可实现任意if-else组合
+    
+    ### 3.10 日期操作符（未实现）
+    日期类型支持如下计算操作
+    
+    | 符号表示 | 示例 | 含义 | 输入类型 | 输出类型 |
+    | --- | --- | --- | --- | --- |
+    | + | date1 = to_date('20220212', 'yyMMdd') //将字符串转换成日期    date2 = to_date('5','d') //将字符串转换成日期    date3 = date1 + date2 //相加，等于20220217 | 增加日期 | date | date |
+    | - | date1 = to_date('20220212', 'yyMMdd')    date2 = to_date('5','d')    date3 = date1 - date2 //相加，等于20220207 | 减去日志 | date | date |
+    
+    
+    #### 3.10.1 日期简化形式
+    由于返回date类型均需要to_date进行转换，为了简化描述，可按照如下格式简化日期初始化 
+    
+    > 日期/单位 
+    >
+    
+    示例1：初始化日期简化模式 
+    
+    ```sql
+    1@d
+    1@h
+    1@M
+    20221011@yyMMdd
+    ```
+    
+    示例2：取当前时间的相对时间   
+    由于存在大量的近30天、近7天等表达需求，故简化now()获取当前时间，示例如下
+    
+    ```sql
+    +1@d
+    -1@d
+    +1@M
+    ```
+    
+    此外，还有其他日期函数作为补充
+    
+    #### 3.10.2 now
+    + 范式：now()
+    + 作用：日期计算函数，用户返回当前日期
+    
+    #### 3.10.3 date_format
+    + 范式：date_format(time, to_format)/date_format(time, from_format, to_format)
+    + 作用：日期格式化函数，将日期转换成为指定格式字符串，默认为yyyy-MM-dd HH:mm:ss / yyyyMMdd HH:mm:ss  
+    举例：
+    
+    ```plain
+    date1 = to_date('20220101', 'yyMMdd')
+    date_format(date1, 's') //转换成unix时间戳，值为 1640966400
+    date_format(date1, 'yyMMdd hh:mm:ss') //转换成为指定格式，应当为 20220101 00:00:00
+    ```
+    
+    
+    
+    ## 4 基本语法
+    本章节使用场景进行语法介绍和应用
+    
+    ### 4.1 示例场景和需求
+    #### 4.1.1 示例schema
+    假定schema如下   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071708-18e30ecc-236c-4dce-99da-65da6288f07d-758637.png)
+    
+    **User属性**
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | id | string | 主键id |
+    | name | string | 姓名 |
+    | age | int | 年龄 |
+    | gender | 性别概念 | 性别属性 |
+    
+    
+    **Shop属性**
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | id | string | 主键id |
+    | name | string | 店铺名 |
+    | category | 分类概念 | 店铺经验分类 |
+    
+    
+    **(User)-[pay]->(User) 用户向用户转账**
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | amount | float | 转账数目 |
+    
+    
+    **(User)-[visit]->(Shop) 用户浏览过某个商店**
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | timestamp | int | 浏览商店的时间戳 |
+    
+    
+    **(User)-[own]->(Shop) 用户拥有某个商店**
+    
+    无属性
+    
+    **(User)-[consume]->(Shop) 用户消费过某个商店**
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | amount | float | 消费金额 |
+    | timestamp | int | 消费的时间戳 |
+    
+    
+    #### 4.1.2 需求列表
+    | 需求编号 | 需求描述 |
+    | --- | --- |
+    | 1 | 判断一个User是否是店主 |
+    | 3 | 统计一个Shop近7天、30天被浏览的次数 |
+    | 4 | 根据Shop近7天的次数，分层高关注量Shop和低关注量Shop |
+    | 5 | 根据Shop的近7天销量，得到消费最高的top3用户 |
+    | 6 | 判断一个用户转账是否收大于支 |
+    | 7 | 判断一个用户是否自己给自己转账 |
+    | 8 | 得到一个用户最近7天转过账的其他用户 |
+    | 9 | 用户拥有自己的商店，且在自己商店消费 |
+    | 10 | 统计User近7天有消费或者浏览过的店铺数目 |
+    | 11 | 统计每个User在某一Shop的消费总额 |
+    
+    
+    ### 4.2 整体语法描述
+    逻辑规则采用三段式语法表示，其语法结构，如下：
+    
+    ```plain
+    #Structure：定义匹配的子图结构。
+    Structure {
+        // path desciption
+    }
+    #Constraint：定义上述Struct中，对实体和关系的约束条件、以及规则计算的表达式。
+    Constraint {
+        // rule express
+    }
+    #Action：指定了对符合Structure和Constraint的结果进行的后置处理。
+    Action {
+        // action desciption
+    }
+    ```
+    
+    定义新的逻辑谓词的语法结构，如下：
+    
+    ```plain
+    #Define用于定义新的逻辑谓词。它允许您创建符合特殊Structure和Constraint限制的自定义谓词。
+    Define (s:sType)-[p:pType]->(o:oType) {
+        Structure {
+            // path desciption
+        }
+            Constraint {
+            // rule express
+        }
+    }
+    ```
+    
+    下面的章节里，我们将对Structure、Constraint、Action、Define的用法进行详细介绍。
+    
+    ### 4.3 Structure定义
+    该部分结构主要描述路径
+    
+    #### 4.3.1 路径定义
+    路径的基本单元是边，多种边组合起来的连通图成为路径，Structure中可以描述多个路径，方便在不同场景下使用 
+    
+    > 在线业务存在多种非连通图需求，离线批量计算场景较少 
+    >
+    
+    路径描述按照ISO GQL方式进行描述，即如下三种示例
+    
+    ```plain
+    Structure {
+        (s:User)-[p:own]->(o:Shop)
+    }
+    ```
+    
+    ```plain
+    Structure {
+        (s:User)-[p:own]->(o:Shop), (s)-[c:consume]->(o)
+    }
+    ```
+    
+    > 注意：别名的类型定义只能在一处定义，通过逗号表示两个边都必须存在 
+    >
+    
+    ```plain
+    Structure {
+        (s:User)-[p:own|consume]->(o:Shop)
+    }
+    ```
+    
+    #### 4.3.2 路径别名
+    Structure中主要目的是简化路径描述，多数场景下，我们需要对路径的存在性进行判定，为方面后续的规则计算，我们使用路径别名作为Constraint的路径存在性判断参数，如下
+    
+    ```plain
+    Structure {
+        path: (s:User)-[p:own]->(o:Shop)
+    }
+    ```
+    
+    > 当s这个用户拥有一家店铺时，path为true，否则为false 
+    >
+    
+    ```plain
+    Structure {
+        path: (s:User)-[p:own]->(o:Shop), (s)-[c:consume]->(o)
+    }
+    ```
+    
+    > 当s这个用户拥有一家店铺，且在这个店铺进行了消费时，path为true，否则为false 
+    >
+    
+    ```plain
+    Structure {
+        path: (s:User)-[p:own|consume]->(o:Shop)
+    }
+    ```
+    
+    > 当s这个用户没有在任何一家店铺消费，也不拥有任何一家店铺时，path为false，否者为true 
+    >
+    
+    别名的优势在于可以简化path路径的描述，上述两个可以改成如下描述
+    
+    ```plain
+    Structure {
+        ownPath: (s:User)-[p:own]->(o:Shop)
+        consumePath: (s)-[c:consume]->(o)
+    }
+    ```
+    
+    申明两个path 
+    
+    + "用户拥有自己的商店，且在自己商店消费" 可以表达成为ownPath and consumePath
+    + "用户拥有自己的商店或者在商店消费" 可以表达成为ownPath or consumePath
+    
+    #### 4.3.3 路径运算符
+    路径定义时，可以要求Structure中路径不是必须存在，ISO GQL的路径表达中已经对且、或、可选、非做了表达，我们和ISO GQL保持一致
+    
+    ###### 1）路径且
+    ```plain
+    Structure {
+        path: (s:User)-[p:own]->(o:Shop), (s)-[c:consume]->(o)
+    }
+    ```
+    
+    ###### 2）路径或
+    ```plain
+    Structure {
+        path: (s:User)-[p:own|consume]->(o:Shop)
+    }
+    ```
+    
+    ###### 3）路径否（未实现）
+    ```plain
+    Structure {
+        not path: (s:User)-[p:own]->(o:Shop)
+    }
+    ```
+    
+    ###### 4）可选路径
+    ```plain
+    Structure {
+        (s:User)-[p:own]->?(o:Shop)
+    }
+    ```
+    
+    注意：在可选路径中，若对其中别名进行规则判定，则必须预先使用exists函数进行判断，否则会出现不可预期行为，例如
+    
+    ```plain
+    Structure {
+        (s:User)-[p:own]->?(o:Shop)
+    }
+    Constraint {
+      	// 需要预先对p边进行判断
+      	R1: exists(p) and o.product in ["bread", "card"]
+    }
+    ```
+    
+    ```plain
+    Structure {
+        (s:User)-[p:own]->?(o:Shop)
+    }
+    Constraint {
+      	// 此时可选边逻辑和过滤规则冲突
+      	R1: o.product in ["bread", "card"]
+    }
+    ```
+    
+    ###### 5）重复路径
+    ```plain
+    Structure {
+        (s:Company)-[p:hasShare]->{0,*}(o:Company)
+    }
+    ```
+    
+    参考ISO GQL语法，使用花括号的两种参数表达重复的范围，在ISO GQL之上，根据实际应用中的需求，配套总结了几类使用函数
+    
+    | 分类 | 使用场景 | 示例 | 实现状态 |
+    | :---: | :---: | --- | :---: |
+    | 计算类 | 获取重复路径中的最后某个元素 | ```plain Structure {     (s:Company)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	// 获取最后一个公司   	lastCompany = p.nodes().get(-1)     // 获取第一个公司     firstCompany = p.nodes().get(0)      // 获取最后一个公司的控股比例     lastShareRate = p.edges().get(-1).rate } ```  | 未实现 |
+    | | 数值计算(均值、极值、累加、str join等) | ```plain Structure {     (s:Company)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	// 极值   	maxRate = p.edges().max(rate)     // 连乘     realRate = e.edges().accumlate(rate, "*") } ```  | 未实现 |
+    | | reduce操作 | ```plain Structure {     (s:Company)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	// 极值   	maxRate = p.edges().reduce((res, cur) => rule_value(res > cur.rate, res, cur.rate), 0)     // 连乘     realRate = e.edges().reduce((res, cur) => cur.rate * res, 1) } ```  | 已实现 |
+    | 约束类 | 重复路径节点/边间约束 | ```plain Structure {     (s:Company)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	R1("必须属于同类型公司"): p.nodes().constraint((pre,cur) => pre.type == cur.type) } ```  | 已实现 |
+    | | 重复路径节点的常量约束 | ```plain Structure {     (s:Company)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	R1("必须是上市公司"): p.nodes().constraint((pre,cur) => cur.type == "上市公司") } ```  | 已实现 |
+    | | 重复路径节点和外部常量约束 | ```plain Structure {   	(u:Person)-[:hasShare]->(s:Company),     (s)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	R1("公司的重要人物中包含股东"): p.nodes().constraint((pre,cur) => contains(cur.management, u.name)) } ```  | 已实现 |
+    | 结果处理 | 只保留最长/最短的路径 | ```plain Structure {   	(u:Person)-[:hasShare]->(s:Company),     (s)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	R1("保留最长路径"): group(s,o).keep_longest_path(p) } ```  | 已实现 |
+    | | 只保留最短的路径 | ```plain Structure {   	(u:Person)-[:hasShare]->(s:Company),     (s)-[p:hasShare]->{0,*}(o:Company) } Constraint {   	R1("保留最短路径"): group(s,o).keep_shortest_path(p) } ```  | 已实现 |
+    
+    
+    ###### 6）函数边
+    ```plain
+    Structure {
+        (s:Park)-[e:nearby(s.boundary, o.center, 10.1)]->(o:Subway)
+    }
+    ```
+    
+    支持-[]-中支持函数传参申明，可实现任务两个点使用逻辑关系进行关联
+    
+    ### 4.4 Constraint语法
+    #### 4.4.1 单规则语法
+    Constraint中每一行作为一个规则，规则分为如下几类
+    
+    + **逻辑规则**
+    
+    以 **规则英文名("规则说明"): 表达式** 这种格式进行表达，输出为布尔值。常用运算符有`>、<、==、>=、<=、!=、+、-、*、/、%`等，运算符可以进行扩展。
+    
+    + **计算规则**
+    
+    以 **规则英文名("规则说明")= 表达式** 进行表达，输出结果为数字或者文本，取决于表达式内容。
+    
+    + **赋值规则**
+    
+    以 **别名.属性名=** **表达式** 没有规则名，仅允许Define中定义的别名进行属性赋值表达。此类规则仅在特定谓词的规则定义中有效。
+    
+    以4.3中ownPath和consumePath为例
+    
+    ```plain
+    Structure {
+        ownPath: (s:User)-[p:own]->(o:Shop)
+        consumePath: (s)-[c:consume]->(o)
+    }
+    Constraint {
+    }
+    ```
+    
+    ```plain
+    Structure {
+        optional ownPath: (s:User)-[p:own]->(o:Shop)
+        optional consumePath: (s)-[c:consume]->(o)
+    }
+    Constraint {
+        ownAndConsumeUser("用户拥有自己的商店或者在商店消费"): exist(ownPath) or exist(consumePath)
+    }
+    ```
+    
+    ```plain
+    Structure {
+        (s:Shop)<-[p:visit]-(o:User)
+    }
+    Constraint {
+        R1("7天内是否访问") : p.timestamp >= -7@d
+    }
+    ```
+    
+    > s可能存在很多个user访问，但是我们只处理7天内的边，第五行中不满足的o会被终止 
+    >
+    
+    #### 4.4.2 规则组语法
+    规则组可以将逻辑规则进行组合，主要目的是将逻辑计算层次化
+    
+    ```plain
+    Structure {
+        （s:User）
+    }
+    Constraint {
+        R1("成年人"): s.age > 18
+    
+        R2("男性"): s.gender == "男"
+    
+        // 下面这句是正确的，R3由R1和R2组合而成，就被视为是一条规则组
+        R3("成年男性"): R1 and R2
+    
+        // 下面这句是错误的，规则组里不允许有非规则的变量
+        R3("成年男性"): R1 and s.gender == "男"
+    }
+    ```
+    
+    #### 4.4.3 聚合语法
+    支持聚合的算子有如下特性和限制
+    
+    + 算子的输入必须为list类型
+    + group语句可以将图进行分组，将若干条相同模式的路径进行聚合分组，当使用group时，聚合算子对整个图分组的点边进行聚合操作
+    + 聚合算子只能针对以一个起点产生的子图进行聚合计算，**若需要一批起点产生的子图进行计算，则不在该文档支持范围内**
+    
+    由于需求中存在多种聚合类需求，4.1.2中存在统计需求列表如下
+    
+    | 需求编号 | 需求描述 |
+    | --- | --- |
+    | 3 | 统计一个Shop近7天、30天被浏览的次数 |
+    | 4 | 根据Shop近7天的次数，分层高关注量Shop和低关注量Shop |
+    | 5 | 根据Shop的近7天销量，得到消费最高的top3用户 |
+    | 6 | 判断一个用户转账是否收大于支 |
+    | 10 | 统计User近7天有消费或者浏览过的店铺数目 |
+    | 11 | 统计每个User在某一Shop的消费总额 |
+    
+    
+    **示例1：需求10、需求3、需求4**   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071871-901d6c90-6ad1-47d9-983f-20e25e51be83-091638.png)   
+    假设当前时间为2023.1.10日，那么Alice近7天有消费或者浏览过的店铺数目应当为2，语法表达如下 
+    
+    ```plain
+    Structure {
+        (s:User)-[p:visit|consume]->(o:Shop)
+    }
+    Constraint {
+        R1("近7天内有访问或消费") : p.timestamp >= -7@d
+        // 忽略group(s)场景
+        visitOrConsumeShopNum("统计User近7天有消费或者浏览过的店铺数目") = count(o)
+    
+        //显示表达
+        visitOrConsumeShopNum("统计User近7天有消费或者浏览过的店铺数目") = group(s).count(o)
+    }
+    ```
+    
+    **示例2：判断用户是否收大于支**   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071822-26f1b352-b016-464e-97c9-ec958f118f04-522835.png)   
+    上图中，Jobs、Alice、Mike属于收大于支，Bob属于支大于收，那么规则如下表示 
+    
+    ```plain
+    Structure {
+        outPath: (s:User)-[outP:pay]->(outU:User)
+        inPath: (inU:User)-[inP:pay]->(s)
+    }
+    Constraint {
+        // inPath不存在，则返回0，否则进行聚合计算
+        inAmount("收入") = rule_value(inPath, group(s).sum(inP.amount), 0)
+        // outPath不存在，则返回0，否则进行聚合计算
+        outAmount("支出") = rule_value(outPath, group(s).sum(outP.amount), 0)
+    
+        R2("收大于支"): inAmount > outAmount
+    }
+    ```
+    
+    **示例3：根据Shop的近7天销量，得到消费最高的top3用户（未实现）** 
+    
+    
+    
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071818-e3b75d8f-bc51-4f0c-b177-c1cf5d79002b-073186.png)   
+    上面数据实例中，top3为:Jobs、Mike、Alice 
+    
+    ```plain
+    Structure {
+        (s:Shop)<-[p:consume]-(o:User)
+    }
+    Constraint {
+        R1("7天内消费"): p.timestamp >= -7@d
+        R2("top3的用户"): group(s).desc(p.amount).limit(3) //注意，此时只会保留Jobs、Mike、Alice节点
+    }
+    ```
+    
+    **示例4：统计每个User在某一Shop的销售量**   
+    假定数据如下   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071716-7deac508-edf3-4cb1-a371-cdef6431dbdd-576182.png)   
+      
+    该里需要统计Shop近7天浏览的次数，值得注意的是，Bob存在2条边，这两个需要进行聚合统计 
+    
+    ```plain
+    Structure {
+        (s:Shop)<-[p:consume]-(o:User)
+    }
+    Constraint {
+        R("7天内消费"): p.timestamp >= -7@d
+        // 用户消费总额上赋值
+        userConsumeAmount('店铺销售总额') = group(s,o).sum(p.amount) //注意，此时会输出4个结果
+    }
+    Action {
+        get(s.name, userConsumeAmount)
+    }
+    ```
+    
+    ### 4.5 Define谓词规则语法
+    前面几个章节主要目的为路径、规则描述，本节主要目标是对谓词进行定义。谓词主要分为三个场景进行表达
+    
+    + 实体类型和概念的归纳语义定义
+    + 实体类型之间的逻辑谓词定义
+    + 实体类型和基本类型之间的逻辑谓词定义
+    
+    #### 4.5.1 实体类型和概念的归纳语义定义
+    关于实体和概念的介绍可以参见 [schema建模手册中的说明](https://openspg.yuque.com/ndx6g9/docs/peb03cne0mky8i36)。 
+    
+    归纳语义(Induction)，是指从一类有共同特征的实体中得出对这些实体概括性的概念，这种个体和概念之间的关系就是归纳关系。  
+    实体类型和概念间的归纳语义，通过语法规则表达如下：
+    
+    ```plain
+    Define (s:TypeA)-[p:TypeP]->(o:TaxonomyOfTypeA/ConceptA) {
+        Structure {
+            // path desciption
+        }
+        Constraint {
+            // rule express
+        }
+    }
+    ```
+    
+    ConceptA是属于TaxonomyOfTypeA类型，上述规则表达含义为，TypeA类型的s在满足上述规则表达的前提下，可以通过TypeP谓词链接到ConceptA概念上。下面以示例举例:   
+    根据4.1.2的需求，我们可以将如下需求转化成为概念进行定义 
+    
+    | 需求编号 | 需求描述 |
+    | --- | --- |
+    | 1 | 判断一个User是否是店主 |
+    | 4 | 根据Shop近7天的次数，分层高关注量Shop和低关注量Shop |
+    | 7 | 判断一个用户是否自己给自己转账 |
+    
+    
+    示例1：判断一个User是否是店主   
+    判断是否是店主主要看名下是否有店铺   
+    假定已经按照概念建模创建了ShopKeeper概念，如下   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071764-a7a5ff28-0a9e-43ff-b005-a12ad6c6b9f8-479477.png)   
+    从实例图上可以看出，bob没有店不属于ShopKeeper，Alice有一个Hotel，所以应该属于ShopKeeper，我们可以通过语法将Alice归纳为ShopKeeper用户类别 
+    
+    ```plain
+    Define (s:User)-[p:belongTo]->(o:TaxonomyOfUser/ShopKeeper) {
+        Structure {
+            path: (s)-[ownP:own]->(shop:Shop)
+        }
+        Constraint {
+            R1("拥有店铺"): path
+        }
+    }
+    ```
+    
+    通过如上规则，则可以将概念和实体实例建立挂载关系   
+    示例2：根据Shop近7天的次数，分层高关注量Shop和低关注量Shop   
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071723-5ad295da-e99a-4952-9592-a4f102b4f1fd-590222.png)   
+    上图中Hotel被访问的较多，Drug Store访问很少，我们需要按照业务要求将他们和PopularShop和NamelessShop分别挂载上 
+    
+    ```plain
+    Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/PopularShop) {
+        Structure {
+            path: (s)<-[vP:visit]-(u:User)
+        }
+        Constraint {
+            R1("7天内消费"): vP.timestamp >= -7@d
+            // 当路径不存在时，浏览次数为0，否则对u进行统计
+            visitsNum("浏览次数") = rule_value(path, group(s).count(u),0)
+            R2("热点商户"): visitsNum > ${hot_shop_threashold}
+        }
+    }
+    ```
+    
+    > 注：${hot_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入 
+    >
+    
+    ```plain
+    Define (s:Shop)-[p:belongTo]->(o:TaxonomyOfShop/NamelessShop) {
+        Structure {
+            path: (s)<-[vP:visit]-(u:User)
+        }
+        Constraint {
+            R1("7天内消费"): vP.timestamp >= -7@d
+            // 当路径不存在时，浏览次数为0，否则对u进行统计
+            visitsNum("浏览次数") = rule_value(path, group(s).count(u),0)
+            R2("低关注量商户"): visitsNum < ${nameless_shop_threashold}
+        }
+    }
+    ```
+    
+    > 注：${nameless_shop_threashold} 为阈值参数，需要在谓词使用时将具体值填入 
+    >
+    
+    #### 4.5.2 实体类型之间逻辑谓词定义
+    可使用类型之间定义需求如下 
+    
+    | 需求编号 | 需求描述 |
+    | --- | --- |
+    | 7 | 判断一个用户是否自己给自己转账 |
+    | 8 | 得到一个用户最近7天转过账的其他用户 |
+    | 11 | 统计每个User在某一Shop的销售量 |
+    
+    
+    基本定义和4.5.1中基本一致，按照需求新增schema   
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071843-1955a86c-8e04-41bc-8773-ba00f7ac4548-446760.png) 
+    
+    主要三种
+    
+    + (s:User)-[p:transSelf]->(s) 自己向自己转账
+    + (s:User)-[p:trans7Days]->(o:User) 7天内有转账的用户
+    + (s:Shop)-[p:consumeAmount]->(o:User) 商铺某个用户的销售额
+    
+    示例1：判断一个用户是否自己给自己转账 
+    
+    ```plain
+    Define (s:User)-[p:transSelf]->(s) {
+        Structure {
+            path: (s)-[pp:pay]->(s)
+        }
+        Constraint {
+            R1("自己向自己转账"): path
+        }
+    }
+    ```
+    
+    示例2：7天内有转账的用户 
+    
+    ```plain
+    Define (s:User)-[p:trans7Days]->(o:User) {
+        Structure {
+            path: (s)-[pp:pay]->(o)
+        }
+        Constraint {
+            R1("7天内消费"): p.timestamp > -7@d
+            R2("存在转账"): path
+        }
+    }
+    ```
+    
+    示例3：商铺对一个用户的销售总额 
+    
+    ```plain
+    Define (s:Shop)-[p:consumeAmount]->(o:User) {
+        Structure {
+            path: (s)<-[cp:consume]-(o)
+        }
+        Constraint {
+            R1("存在交易用户"): path
+            p.amount = group(s,o).sum(cp.amount) //统计所有的交易额
+        }
+    }
+    ```
+    
+    #### 4.5.3 实体类型和基本类型之间逻辑谓词定义
+    前两章节主要是和实体类型和概念之间语义链接，实际上存在部分需求，和任何其他类型没有交互，例如如下需求 
+    
+    | 需求编号 | 需求描述 |
+    | --- | --- |
+    | 1 | 判断一个User是否是店主 |
+    | 3 | 统计一个Shop近7天、30天被浏览的次数 |
+    | 6 | 判断一个用户转账是否收大于支 |
+    | 7 | 判断一个用户是否自己给自己转账 |
+    | 9 | 用户拥有自己的商店，且在自己商店消费 |
+    | 10 | 统计User近7天有消费或者浏览过的店铺数目 |
+    
+    
+    如上需求，我们可以增加User属性 
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | isShopOwner | boolean | 是否是店主 |
+    | isIncomeLargeOutcome | boolean | 是否收大于支 |
+    | 7daysVisitOrConsumeShopNum | int | 近7天有消费或者浏览过的店铺数目 |
+    
+    
+    Shop可以增加属性 
+    
+    | 属性名 | 类型 | 说明 |
+    | --- | --- | --- |
+    | 7daysVisitNum | int | 近7天浏览人数 |
+    | 30daysVisitNum | int | 近30天浏览人数 |
+    
+    
+    这些新增属性，可通过规则进行定义，避免出现实际的数据新导入   
+    示例1：近7天有消费或者浏览过的店铺数目 
+    
+    ```plain
+    Define (s:User)-[p:7daysVisitOrConsumeShopNum]->(o:int) {
+        Structure {
+            path: (s)-[vc:visit|consume]->(shop:Shop)
+        }
+        Constraint {
+            R("7天内消费or浏览"): p.timestamp > -7@d
+            o = group(s).count(shop) //赋值
+        }
+    }
+    ```
+    
+    示例2：近7天浏览店铺的用户 
+    
+    ```plain
+    Define (s:Shop)-[p:7daysVisitNum]->(o:int) {
+        Structure {
+            path: (s)<-[p:visit]-(u:User)
+        }
+        Constraint {
+            R("7天内浏览"): p.timestamp > -7@d
+            o = group(s).count(u) //赋值
+        }
+    }
+    ```
+    
+    示例3：近30天浏览店铺的用户 
+    
+    ```plain
+    Define (s:Shop)-[p:30daysVisitNum]->(o:int) {
+        Structure {
+            path: (s)<-[p:visit]-(u:User)
+        }
+        Constraint {
+            R("30天内浏览"): p.timestamp > -30@d
+            o = group(s).count(u) //赋值
+        }
+    }
+    ```
+    
+    ### 4.6 Action语法
+    Action中支持多种操作：
+    
+    + createNodeInstance/createEdgeInstance：用于因果的逻辑结果的语义表达
+    + get ：输出匹配的结果，包括实体、关系以及属性等内容。
+    
+    具体用法如下面的例子展示： 
+    
+    #### 4.6.1 Causal logic semantics
+    在事理图谱中，因果关系基本需要在满足一定条件才成立，本例引用SPG白皮书中金融事理图谱章节的案例进行表述。事理描述如下图：  
+      
+    ![original](./img/RqklDCzzJ9Us4LEb/1735477071758-1674cc04-a8e8-4bde-b6cf-ef1018c82ea4-150220.jpeg) 
+    
+    #### 4.6.1.1 createNodeInstance
+    当概念之间满足因果语义的条件时，createNodeInstance将创建一个新的实例。本例中创建新的事件实例，具体使用方式如下：
+    
+    ```plain
+    Define (s: `ProductChain.TaxonomyOfCompanyAccident`/`周期性行业头部上市公司停产事故`)-[p: leadTo]->(o: `ProductChain.TaxonomyOfIndustryInfluence`/`成本上升`) {
+        Structure {
+            (s)-[:subject]->(c:ProductChain.Company)
+            (c)-[:belongIndustry]->(d:ProductChain.Industry)
+            (d)-[:downstream]->(down:ProductChain.Industry)
+        }
+        Constraint {
+            // 这里没有定义约束条件
+        }
+        Action {
+            downEvent = createNodeInstance(
+                type=ProductChain.IndustryInfluence,
+                value={
+                    subject=down.id
+                    objectWho="上升"
+                    influenceDegree="上升"
+                    indexTag="成本"
+                }
+            )
+        }
+    }
+    ```
+    
+    **createNodeInstance参数说明：** 
+    
+    + type：这里需要指定我们创建一个什么样的实体类型实例
+    + value：此处为实例的具体属性值，由kv对构成，k为schema中定义的属性名，v为具体值，可为常量，也可以为Structure和Constraint中的各种变量。注意：若k不存在于schema中或者值不满足schema定义，则为非法值  
+    **返回值：** 
+    + 具体实例别名，不能和Structure、Constraint中的变量重合
+    
+    本例中创建一个新的事件实例downEvent，该事件类型为ProductChain.IndustryInfluence，主体为Structure中的down实体，属性代表该产业成本上升
+    
+    ##### 4.6.1.2 createEdgeInstance
+    也可以通过createEdgeInstance创建一条新的关系，可将触发的事件实例和具有因果关系的事件实例进行关联。具体使用方式如下：
+    
+    ```plain
+    Define (s: `ProductChain.TaxonomyOfCompanyAccident`/`周期性行业头部上市公司停产事故`)-[p: leadTo]->(o: `ProductChain.TaxonomyOfIndustryInfluence`/`成本上升`) {
+        Structure {
+            (s)-[:subject]->(c:ProductChain.Company)-[:belongIndustry]->(d:ProductChain.Industry)-[:downstream]->(down:ProductChain.Industry)
+        }
+        Constraint {
+    
+        }
+        Action {
+            downEvent = createNodeInstance(
+                type=ProductChain.IndustryInfluence,
+                value={
+                    subject=down.id
+                    objectWho="上升"
+                    influenceDegree="上升"
+                    indexTag="成本"
+                }
+            )
+            #在事件s和新生成的downEvent建立一条leadTo边，代表一个事件实例导致了另外一个事件实例
+            createEdgeInstance(
+                src=s,
+                dst=downEvent,
+                type=leadTo,
+                value={}
+            )
+        }
+    }
+    ```
+    
+    
+    
+    **createEdgeInstance参数说明：** 
+    
+    + type：指定边类型
+    + src：起点的别名，必须存在Structure中，或者是Action中通过createNodeInstance创建的实例
+    + dst：终点的别名，同样满足src的约束
+    + value：边的属性值，也为kv对，可为空
+    
+    **返回值：** 
+    
+    + 无，主要原因为，在Action中，边实例不会被再次引用
+    
+    #### 4.6.2 数据输出
+    get的作用是获取Structure或者Constraint中的实体、关系、属性或者临时变量，具体使用方式如下：
+    
+    ```plain
+    //可通过get获取Structure或者Constraint中的属性或者临时变量
+    
+    Structure {
+        path: (s:Shop)<-[vP:visit]-(u:User)
+    }
+    Constraint {
+        R("7天内消费"): vP.timestamp >= -7@d
+        visitsNum("浏览次数") = rule_value(path, group(s).count(u),0)
+        R2("热点商铺"): visitsNum > 1000
+    }
+    Action {
+        // 获取shop和user点的id，并且返回Constraint中的visitsNum变量
+        get(s.id, u.id, visitsNum)
+    }
+    ```
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://openspg.yuque.com/ndx6g9/docs/peb03cne0mky8i36)}
+风险内容位置：
+    CommitId: b45b38df76cb2cbafdc2f7a6213d4f5d9a1ad733
+    文件名：website/docs/ch/UserGuide/自定义扩展/领域知识挂载.md
+    文件行：1~270
+风险内容：
+    # 领域知识挂载
+    
+    # 介绍
+    在某些垂直领域如医疗、法律、金融等，可能累积了较多的结构化专家知识图谱。这些领域知识图谱可以作为非结构化知识图谱抽取的先验，一方面辅助知识抽取、另一方面也可以有效提升整个图谱的质量，进而提升推理问答的准确率。
+    
+    为了支持领域知识图谱的挂载，KAG 在V0.6增加了`ExternalGraphLoader`组件，提供以下基础的功能支持：
+    
+    1. 加载并导入现有领域知识图谱到图数据库
+    2. 在知识抽取组件（Extractor）中，基于领域知识图谱节点对文档进行实体识别
+    3. 在PostProcessor组件中，将从非结构化文档抽取出的实体链指（标准化）到领域知识图谱的节点上
+    
+    
+    
+    通过以上方式，用户从非结构化文档中构建出的图谱可以与已有领域知识图谱进行融合，从而获得更高质量的索引。
+    
+    # 使用示例
+    domain_kg中提供了一个医疗领域知识挂载的案例，其中领域知识图谱的节点为医学名词，关系为isA。文档内容为部分医学名词的介绍。可参考readme文档进行初步体验。
+    
+    **代码路径:**`**kag/examples/domain_kg/**`
+    
+    
+    
+    # 领域知识挂载组件实现
+    KAG领域知识挂载组件的基类为`kag.interface.builder.external_graph_abc.ExternalGraphLoaderABC`，用户可以使用以下命令查看默认实现相关信息：
+    
+    ```bash
+    $ kag interface --cls ExternalGraphLoaderABC
+    ```
+    
+    会打印如下信息：
+    
+    ```plain
+                        Documentation of ExternalGraphLoaderABC
+    Abstract base class for loading and interacting with external knowledge graphs.
+    
+    This class defines the interface for components that load and interact with external knowledge graphs.
+    It inherits from `BuilderComponent` and provides methods for dumping subgraphs, performing named entity
+    recognition (NER), retrieving allowed labels, and matching entities.
+                        Registered subclasses of ExternalGraphLoaderABC
+    [kag.builder.component.external_graph.external_graph.DefaultExternalGraphLoader]
+    Register Name: "base"
+    
+    Documentation:
+    A default implementation of the ExternalGraphLoaderABC interface.
+    
+    This class is responsible for loading external graph data based on the provided nodes, edges, and match configuration.
+    
+    Initializer:
+    Creates an instance of DefaultExternalGraphLoader from JSON files containing node and edge data.
+    
+    Args:
+        node_file_path (str): The path to the JSON file containing node data.
+        edge_file_path (str): The path to the JSON file containing edge data.
+        match_config (MatchConfig): The configuration for matching query str to graph nodes.
+    
+    Returns:
+        DefaultExternalGraphLoader: An instance of DefaultExternalGraphLoader initialized with the data from the JSON files.
+    
+    Required Arguments:
+      node_file_path: str
+      edge_file_path: str
+      match_config: MatchConfig
+    
+    Optional Arguments:
+      No Optional Arguments found
+    
+    Sample Useage:
+      ExternalGraphLoaderABC.from_config({'type': 'base', 'node_file_path': 'Your node_file_path config', 'edge_file_path': 'Your edge_file_path config', 'match_config': 'Your match_config config'})
+    
+    ```
+    
+    可见KAG框架目前提供了一个注册名为`"base"`的默认实现，其类路径为`kag.builder.component.external_graph.external_graph.DefaultExternalGraphLoader`
+    
+    下面对关键接口进行详细说明：
+    
+    ## 组件初始化
+    `DefaultExternalGraphLoader`的初始化接口包含如下入参：
+    
+    + node_file_path (str)
+    
+    领域知识图谱的节点数据，为json格式，形如：
+    
+    ```json
+    [
+        {
+            "id": "00000001,
+            "name": "(缩)肾上腺皮质激素",
+            "label": "Concept",
+            "properties": {
+    
+            }
+        },
+        {
+            "id": "00000002",
+            "name": "促肾上腺皮质激素",
+            "label": "Concept",
+            "properties": {
+    
+            }
+        }
+    ]
+    ```
+    
+    该格式即为KAG框架中默认的图节点数据模型(`kag.builder.model.sub_graph.Node`)，各字段介绍如下：
+    
+        - `id`：节点唯一ID
+        - `name`：节点名称
+        - `label`：节点类型，须存在于schema定义中
+        - `properties`：可选字段，用于储存节点的额外属性
+    + edge_file_path (str)
+    
+    领域知识图谱的关系数据，为json格式，形如：
+    
+    ```json
+    [
+        {
+            "id": "00000001-00000002",
+            "from": "00000001",
+            "fromType": "Concept",
+            "to": "00000002",
+            "toType": "Concept",
+            "label": "isA",
+            "properties": {
+    
+            }
+        },
+        {
+            "id": "00000001-00000003",
+            "from": "00000001",
+            "fromType": "Concept",
+            "to": "00000003",
+            "toType": "Concept",
+            "label": "isA",
+            "properties": {
+    
+            }
+        }
+    ]
+    ```
+    
+    该格式即为KAG框架中默认的图关系数据模型(`kag.builder.model.sub_graph.Edge`)，，各字段介绍如下：
+    
+        - `id`
+    
+    关系的唯一ID
+    
+        - `label`
+    
+    关系的类型
+    
+        - `from`
+    
+    关系起点ID
+    
+        - `fromType`
+    
+    关系起点类型
+    
+        - `to`
+    
+    关系终点ID
+    
+        - `toType`
+    
+    关系终点类型
+    
+        - `properteis`
+    
+    可选字段，用于储存节点的额外属性
+    
+    
+    
+    + match_config (MatchConfig)
+    
+    `kag.interface.MatchConfig`类型对象，定义了外部实体链指到本领域知识图谱上的实体节点时的配置，其实现如下：
+    
+    ```python
+    class MatchConfig(Registrable):
+        """
+        Configuration class for matching operations.
+    
+        This class is used to define the parameters for matching operations, such as the number of matches to return,
+        the labels to consider, and the threshold for matching confidence.
+    
+        Attributes:
+            k (int): The number of matches to return. Defaults to 1.
+            labels (List[str]): The list of labels to consider for matching. Defaults to None.
+            threshold (float): The confidence threshold for matching. Defaults to 0.9.
+        """
+    
+        def __init__(self, k: int = 1, labels: List[str] = None, threshold: float = 0.9):
+            """
+            Initializes the MatchConfig with the specified parameters.
+    
+            Args:
+                k (int, optional): The number of matches to return. Defaults to 1.
+                labels (List[str], optional): The list of labels to consider for matching. Defaults to None.
+                threshold (float, optional): The confidence threshold for matching. Defaults to 0.9.
+            """
+            self.k = k
+            self.labels = labels
+            self.threshold = threshold
+    
+    ```
+    
+    ## 基于领域知识图谱执行实体识别
+    `DefaultExternalGraphLoader`提供了`ner`接口，可以基于领域知识图谱中包含的实体，对文本进行实体识别。相比基于LLM的实体识别，可以更好的融入特定领域的知识。接口定义如下：
+    
+    ```python
+        def ner(self, content: str):
+            output = []
+            import jieba
+    
+            for word in jieba.cut(content):
+                if word in self.vocabulary:
+                    output.append(self.vocabulary[word])
+            return output
+    
+    ```
+    
+    当前的实现基于中文分词和字符串匹配，用户可自行扩展更多策略。
+    
+    
+    
+    ## 基于领域知识图谱执行实体链指
+    在很多场景中，我们期望将抽取出的实体链指到标准的领域知识实体节点，即对实体做标准化。对于开放领域，借助LLM可以很好的完成此任务。但是对于特定垂直领域，LLM往往缺乏相关知识或概念。`DefaultExternalGraphLoader`提供了`match_entity`接口，通过文本匹配或向量匹配的方式，寻找任意实体与领域知识图谱中最相似的节点。接口定义如下：
+    
+    ```python
+        def match_entity(self, query: Union[str, List[float], np.ndarray]):
+            if isinstance(query, str):
+                return self.text_match(
+                    query, k=self.match_config.k, labels=self.match_config.labels
+                )
+            else:
+                return self.vector_match(
+                    query,
+                    k=self.match_config.k,
+                    labels=self.match_config.labels,
+                    threshold=self.match_config.threshold,
+                )
+    
+    ```
+    
+    其中,`match_config`定义了链指的策略，如链指实体的数量，相似度阈值等。
+    
+    # 自定义扩展
+    
+    
+    前述领域知识挂载组件只包含了基础的功能， 难以覆盖各个业务。用户如果有额外的需求，可以参考[自定义代码](https://openspg.yuque.com/ndx6g9/docs/mxdhqfad16p4f8pk)章节，对组件进行扩展。主要包含如下扩展点：
+    
+    1. 扩展ExternalGraphLoader组件
+    
+    例如支持加载不同格式的领域知识文件、自定义`ner`和`match_entity`策略
+    
+    2. 扩展Extractor组件
+    
+    例如在抽取过程中自定义领域知识如何干预或修正抽取结果
+    
+    3. 扩展Solver组件
+    
+    例如在推理问答过程中优先基于领域知识进行检索召回
+    
+    
+    
+    
+    
+    ****
+    
+    
+    
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://openspg.yuque.com/ndx6g9/docs/mxdhqfad16p4f8pk)}

@@ -73,11 +73,19 @@ const config = {
           src: 'img/favicon.png',
         },
         items: [
-          {
+          /*{
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Docs',
+          },*/
+          {
+            label: 'Docs',
+            position: 'left',
+            items: [
+              { label: 'English', to: '/docs_en' },
+              { label: '中文', to: '/docs_ch' },
+            ],
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {

@@ -41,7 +41,7 @@ sidebar_label: 常见问题
 
 
 ## 问题4：正确配置完生成模型和表示模型，都可以在宿主机上通过curl命令成功访问后，但在OpenSPG服务端的知识问答页面中，还是出现connection refused或者timeout
-OpenSPG问答页面进行自然语言问答，需要spg-server的容器能正常访问到宿主机上的向量服务，对于使用windows或mac上的docker desktop的同学来说，可以指定向量服务base_url = http://host.docker.internal:11434/${path}访问宿主机，对于使用linux的同学来说，可以指定base_url = [http://172.17.0.1:11434/${path}](http://172.17.0.1:11434/${path})通过访问docker0网络的网关从而访问宿主机。此外，需要注意启动ollama服务前，export OLLAMA_HOST=0.0.0.0:11434，配置ollama监听来自所有地址的访问请求。
+OpenSPG问答页面进行自然语言问答，需要spg-server的容器能正常访问到宿主机上的向量服务，对于使用windows或mac上的docker desktop的同学来说，可以指定向量服务base_url = `http://host.docker.internal:11434/${path}` 访问宿主机，对于使用linux的同学来说，可以指定base_url = `http://172.17.0.1:11434/${path}` 通过访问docker0网络的网关从而访问宿主机。此外，需要注意启动ollama服务前，export OLLAMA_HOST=0.0.0.0:11434，配置ollama监听来自所有地址的访问请求。
 
 同时我们在创建项目时，会对所有配置进行校验，验证通过后才能进行保存
 
