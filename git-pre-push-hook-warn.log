@@ -1,9 +1,0 @@
-风险内容位置：
-    CommitId: d4ca3a4aeaf2cd507c63985eaf4f2a43e84220e8
-    文件名：website/docs/design_philosophy/technical_report/kag.md
-    文件行：12
-风险内容：
-    [KAG-Boosting_LLMs_in_Professional_Domains_via_Knowledge_Augmented_Generation.pdf](https://arxiv.org/pdf/2409.13731)
-风险细节：
-    敏感类型：URL地址(url)
-    敏感细节：{hitWord=https://arxiv.org/pdf/2409.13731)}
