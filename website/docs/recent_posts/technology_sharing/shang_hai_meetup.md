@@ -9,44 +9,40 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="MedSPG" label="MedSPG">
-    #### Download
-    [Download PDF](https://github.com/user-attachments/files/17741427/MedSPG.-.pdf)
+    [MedSPG.pdf](https://github.com/user-attachments/files/17741427/MedSPG.-.pdf)
     #### Preview
     <iframe
-        src="/v2/pdf/shanghai_meetup/MedSPG.pdf"
+        src="/v2/pdf/shanghai_meetup/MedSPG-compressed.pdf"
         style={{backgroundColor: "#f0f0f0"}}
         width="100%"
         height="700"
     />
   </TabItem>
   <TabItem value="KAG" label="KAG">
-    #### Download
-    [Download PDF](https://github.com/user-attachments/files/17741194/KAG-.-.pdf)
+    [KAG.pdf](https://github.com/user-attachments/files/17741194/KAG-.-.pdf)
     #### Preview
     <iframe 
-        src="/v2/pdf/shanghai_meetup/KAG.pdf"
+        src="/v2/pdf/shanghai_meetup/KAG-compressed.pdf"
         style={{backgroundColor: "#f0f0f0"}}
         width="100%"
         height="600"
     />
   </TabItem>
   <TabItem value="TuGraph-DB" label="TuGraph-DB">
-    #### Download
-    [Download PDF](https://github.com/user-attachments/files/17741490/TuGraph-DB.5.0.AI.-.pdf)
+    [TuGraph-DB.5.0.AI.pdf](https://github.com/user-attachments/files/17741490/TuGraph-DB.5.0.AI.-.pdf)
     #### Preview
     <iframe
-        src="/v2/pdf/shanghai_meetup/TuGraph-DB.5.0.AI.pdf"
+        src="/v2/pdf/shanghai_meetup/TuGraph-DB.5.0.AI-compressed.pdf"
         style={{backgroundColor: "#f0f0f0"}}
         width="100%"
         height="600"
     />
   </TabItem>
   <TabItem value="DB-GPT" label="DB-GPT">
-    #### Download
-    [Download PDF](https://github.com/user-attachments/files/17741492/GraphRAG.DB-GPT.pdf)
+    [GraphRAG.DB-GPT.pdf](https://github.com/user-attachments/files/17741492/GraphRAG.DB-GPT.pdf)
     #### Preview
     <iframe
-        src="/v2/pdf/shanghai_meetup/GraphRAG.DB-GPT.pdf"
+        src="/v2/pdf/shanghai_meetup/GraphRAG.DB-GPT-compressed.pdf"
         style={{backgroundColor: "#f0f0f0"}}
         width="100%"
         height="600"
