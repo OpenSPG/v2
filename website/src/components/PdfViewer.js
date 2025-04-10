@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import * as pdfjsLib from 'pdfjs-dist';
-import { GlobalWorkerOptions } from 'pdfjs-dist';
+let pdfjsLib, GlobalWorkerOptions;
 
-// Set the worker path for PDF.js
-GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-).toString();
+
+if (typeof window !== 'undefined') {
+    pdfjsLib = require('pdfjs-dist');
+    GlobalWorkerOptions = pdfjsLib.GlobalWorkerOptions;
+    GlobalWorkerOptions.workerSrc = new URL(
+        'pdfjs-dist/build/pdf.worker.min.mjs',
+        import.meta.url
+    ).toString();
+}
 
 const PdfViewer = ({ pdfUrl, scale }) => {
     const containerRef = useRef(null); // Reference to the scroll container
