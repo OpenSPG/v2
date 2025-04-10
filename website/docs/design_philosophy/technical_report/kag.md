@@ -2,7 +2,6 @@
 sidebar_position: 1
 sidebar_label: KAG
 ---
-import PdfViewer from '@site/src/components/PdfViewer';
 
 # KAG Technical Report
 
@@ -13,4 +12,9 @@ import PdfViewer from '@site/src/components/PdfViewer';
 [KAG-Boosting_LLMs_in_Professional_Domains_via_Knowledge_Augmented_Generation.pdf](https://arxiv.org/pdf/2409.13731)
 
 #### Preview
-<PdfViewer pdfUrl="/v2/pdf/technical_report/KAG-compressed.pdf" scale="1.5" height="700px" width="100%"/>
+<iframe
+    src="/v2/pdf/technical_report/KAG-compressed.pdf"
+    style={{backgroundColor: "#f0f0f0"}}
+    width="100%"
+    height="600"
+/>

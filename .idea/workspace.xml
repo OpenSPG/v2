@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website/src/components/PdfViewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/PdfViewer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/technical_report/kag.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/technical_report/kag.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/design_philosophy/white_paper/openspg.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/design_philosophy/white_paper/openspg.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/technology_sharing/kag_introduction_and_applications.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/technology_sharing/kag_introduction_and_applications.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/technology_sharing/shang_hai_meetup.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/technology_sharing/shang_hai_meetup.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744082435942</updated>
       <workItem from="1744082437690" duration="37285000" />
-      <workItem from="1744184822208" duration="31690000" />
+      <workItem from="1744184822208" duration="32251000" />
     </task>
     <servers />
   </component>
