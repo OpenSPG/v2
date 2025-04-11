@@ -1,5 +1,169 @@
 风险内容位置：
-    CommitId: d4ca3a4aeaf2cd507c63985eaf4f2a43e84220e8
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/Iepile.md
+    文件行：1~20
+风险内容：
+    ---
+    sidebar_position: 5
+    sidebar_label: IEPile
+    ---
+    
+    # IEPile
+    
+    <a href="https://arxiv.org/abs/2402.14710" target="_blank">IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus</a>
+    
+    #### 
+    ```
+    @article{Gui2024IEPileUL,
+      title={IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus},
+      author={Honghao Gui and Lin Yuan and Hongbin Ye and Ningyu Zhang and Mengshu Sun and Lei Liang and Huajun Chen},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2402.14710},
+      url={https://api.semanticscholar.org/CorpusID:267782724}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2402.14710}
+{hitWord=https://api.semanticscholar.org/CorpusID:267782724}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/flex_rlhf.md
+    文件行：1~20
+风险内容：
+    ---
+    sidebar_position: 4
+    sidebar_label: FlexRLHF
+    ---
+    
+    # FlexRLHF
+    
+    <a href="https://arxiv.org/abs/2312.11819" target="_blank">An Adaptive Placement and Parallelism Framework for Accelerating RLHF Training</a>
+    
+    #### 
+    ```
+    @article{Xiao2023AnAP,
+      title={An Adaptive Placement and Parallelism Framework for Accelerating RLHF Training},
+      author={Youshao Xiao and Weichang Wu and Zhenglei Zhou and Fagui Mao and Shangchun Zhao and Lin Ju and Lei Liang and Xiaolu Zhang and Jun Zhou},
+      journal={ArXiv},
+      year={2023},
+      volume={abs/2312.11819},
+      url={https://api.semanticscholar.org/CorpusID:266362133}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2312.11819}
+{hitWord=https://api.semanticscholar.org/CorpusID:266362133}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/instruction_synthesis.md
+    文件行：1~20
+风险内容：
+    ---
+    sidebar_position: 2
+    sidebar_label: Instruction Synthesis
+    ---
+    
+    # Instruction Synthesis
+    
+    <a href="https://arxiv.org/abs/2502.03843" target="_blank">Improving Natural Language Understanding for LLMs via Large-Scale Instruction Synthesis</a>
+    
+    #### 
+    ```
+    @article{Yuan2025ImprovingNL,
+      title={Improving Natural Language Understanding for LLMs via Large-Scale Instruction Synthesis},
+      author={Lin Yuan and Jun Xu and Honghao Gui and Mengshu Sun and Zhiqiang Zhang and Lei Liang and Jun Zhou},
+      journal={ArXiv},
+      year={2025},
+      volume={abs/2502.03843},
+      url={https://api.semanticscholar.org/CorpusID:276161294}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2502.03843}
+{hitWord=https://api.semanticscholar.org/CorpusID:276161294}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/kag.md
+    文件行：6~20
+风险内容：
+    # KAG
+    
+    <a href="https://arxiv.org/abs/2409.13731" target="_blank">KAG: Boosting LLMs in Professional Domains via Knowledge Augmented Generation</a>
+    
+    #### 
+    ```
+    @article{Liang2024KAGBL,
+      title={KAG: Boosting LLMs in Professional Domains via Knowledge Augmented Generation},
+      author={Lei Liang and Mengshu Sun and Zhengke Gui and Zhongshu Zhu and Zhouyu Jiang and Ling Zhong and Yuanyi Qu and Peilong Zhao and Zhongpu Bo and Jin Yang and Huaidong Xiong and Lin Yuan and Jun Xu and Zaoyang Wang and Zhiqiang Zhang and Wen Zhang and Huajun Chen and Wenguang Chen and Jun Zhou},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2409.13731},
+      url={https://api.semanticscholar.org/CorpusID:272827380}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2409.13731}
+{hitWord=https://api.semanticscholar.org/CorpusID:272827380}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/kgfabric.md
+    文件行：1~16
+风险内容：
+    ---
+    sidebar_position: 3
+    sidebar_label: KGFabric
+    ---
+    
+    # KGFabric
+    
+    <a href="https://dl.acm.org/doi/abs/10.14778/3685800.3685810" target="_blank">KGFabric: A Scalable Knowledge Graph Warehouse for Enterprise Data Interconnection</a>
+    
+    #### 
+    ```
+    @article{yikgfabric,
+      title={KGFabric: A Scalable Knowledge Graph Warehouse for Enterprise Data Interconnection},
+      author={Yi, Peng and Liang, Lei and Da Zhang, Yong Chen and Zhu, Jinye and Liu, Xiangyu and Tang, Kun and Chen, Jialin and Lin, Hao and Qiu, Leijie and Zhou, Jun}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://dl.acm.org/doi/abs/10.14778/3685800.3685810}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/maq_instruct.md
+    文件行：1~20
+风险内容：
+    ---
+    sidebar_position: 7
+    sidebar_label: MAQInstruct
+    ---
+    
+    # MAQInstruct
+    
+    <a href="https://arxiv.org/abs/2502.03954" target="_blank">MAQInstruct: Instruction-based Unified Event Relation Extraction</a>
+    
+    #### 
+    ```
+    @article{Xu2025MAQInstructIU,
+      title={MAQInstruct: Instruction-based Unified Event Relation Extraction},
+      author={Jun Xu and Mengshu Sun and Zhiqiang Zhang and Jun Zhou},
+      journal={ArXiv},
+      year={2025},
+      volume={abs/2502.03954},
+      url={https://api.semanticscholar.org/CorpusID:276161153}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2502.03954}
+{hitWord=https://api.semanticscholar.org/CorpusID:276161153}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
     文件名：website/docs/design_philosophy/technical_report/kag.md
     文件行：12
 风险内容：
@@ -7,3 +171,165 @@
 风险细节：
     敏感类型：URL地址(url)
     敏感细节：{hitWord=https://arxiv.org/pdf/2409.13731)}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic_paper/question_answering_with_iterative_approach.md
+    文件行：1~20
+风险内容：
+    ---
+    sidebar_position: 6
+    sidebar_label: Question Answering with Iterative Approach
+    ---
+    
+    # Advancing Multi-hop Question Answering with an Iterative Approach
+    
+    <a href="https://arxiv.org/abs/2407.13101" target="_blank">Retrieve, Summarize, Plan: Advancing Multi-hop Question Answering with an Iterative Approach</a>
+    
+    #### 
+    ```
+    @article{Jiang2024RetrieveSP,
+      title={Retrieve, Summarize, Plan: Advancing Multi-hop Question Answering with an Iterative Approach},
+      author={Zhouyu Jiang and Mengshu Sun and Lei Liang and Zhiqiang Zhang},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2407.13101},
+      url={https://api.semanticscholar.org/CorpusID:271270177}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2407.13101}
+{hitWord=https://api.semanticscholar.org/CorpusID:271270177}
+风险内容位置：
+    CommitId: 40743e0148e2a85487b970d66591312d6688358f
+    文件名：website/docs/design_philosophy/academic-paper.md
+    文件行：1~113
+风险内容：
+    ---
+    sidebar_position: 3
+    sidebar_label: Academic Paper
+    ---
+    
+    # Academic Paper
+    
+    ## 1. KAG
+    
+    <a href="https://arxiv.org/abs/2409.13731" target="_blank">KAG: Boosting LLMs in Professional Domains via Knowledge Augmented Generation</a>
+    
+    ```
+    @article{Liang2024KAGBL,
+      title={KAG: Boosting LLMs in Professional Domains via Knowledge Augmented Generation},
+      author={Lei Liang and Mengshu Sun and Zhengke Gui and Zhongshu Zhu and Zhouyu Jiang and Ling Zhong and Yuanyi Qu and Peilong Zhao and Zhongpu Bo and Jin Yang and Huaidong Xiong and Lin Yuan and Jun Xu and Zaoyang Wang and Zhiqiang Zhang and Wen Zhang and Huajun Chen and Wenguang Chen and Jun Zhou},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2409.13731},
+      url={https://api.semanticscholar.org/CorpusID:272827380}
+    }
+    ```
+    ---
+    
+    ## 2. Improving Natural Language Understanding for LLMs via Large-Scale Instruction Synthesis
+    
+    <a href="https://arxiv.org/abs/2502.03843" target="_blank">Improving Natural Language Understanding for LLMs via Large-Scale Instruction Synthesis</a>
+    
+    ```
+    @article{Yuan2025ImprovingNL,
+      title={Improving Natural Language Understanding for LLMs via Large-Scale Instruction Synthesis},
+      author={Lin Yuan and Jun Xu and Honghao Gui and Mengshu Sun and Zhiqiang Zhang and Lei Liang and Jun Zhou},
+      journal={ArXiv},
+      year={2025},
+      volume={abs/2502.03843},
+      url={https://api.semanticscholar.org/CorpusID:276161294}
+    }
+    ```
+    ---
+    
+    ## 3. KGFabric
+    
+    <a href="https://dl.acm.org/doi/abs/10.14778/3685800.3685810" target="_blank">KGFabric: A Scalable Knowledge Graph Warehouse for Enterprise Data Interconnection</a>
+    
+    ```
+    @article{yikgfabric,
+      title={KGFabric: A Scalable Knowledge Graph Warehouse for Enterprise Data Interconnection},
+      author={Yi, Peng and Liang, Lei and Da Zhang, Yong Chen and Zhu, Jinye and Liu, Xiangyu and Tang, Kun and Chen, Jialin and Lin, Hao and Qiu, Leijie and Zhou, Jun}
+    }
+    ```
+    ---
+    
+    ## 4. FlexRLHF
+    
+    <a href="https://arxiv.org/abs/2312.11819" target="_blank">An Adaptive Placement and Parallelism Framework for Accelerating RLHF Training</a>
+    
+    ```
+    @article{Xiao2023AnAP,
+      title={An Adaptive Placement and Parallelism Framework for Accelerating RLHF Training},
+      author={Youshao Xiao and Weichang Wu and Zhenglei Zhou and Fagui Mao and Shangchun Zhao and Lin Ju and Lei Liang and Xiaolu Zhang and Jun Zhou},
+      journal={ArXiv},
+      year={2023},
+      volume={abs/2312.11819},
+      url={https://api.semanticscholar.org/CorpusID:266362133}
+    }
+    ```
+    ---
+    
+    ## 5. IEPile
+    
+    <a href="https://arxiv.org/abs/2402.14710" target="_blank">IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus</a>
+    
+    ```
+    @article{Gui2024IEPileUL,
+      title={IEPile: Unearthing Large-Scale Schema-Based Information Extraction Corpus},
+      author={Honghao Gui and Lin Yuan and Hongbin Ye and Ningyu Zhang and Mengshu Sun and Lei Liang and Huajun Chen},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2402.14710},
+      url={https://api.semanticscholar.org/CorpusID:267782724}
+    }
+    ```
+    ---
+    
+    ## 6. Retrieve, Summarize, Plan: Advancing Multi-hop Question Answering with an Iterative Approach
+    
+    <a href="https://arxiv.org/abs/2407.13101" target="_blank">Retrieve, Summarize, Plan: Advancing Multi-hop Question Answering with an Iterative Approach</a>
+    
+    ```
+    @article{Jiang2024RetrieveSP,
+      title={Retrieve, Summarize, Plan: Advancing Multi-hop Question Answering with an Iterative Approach},
+      author={Zhouyu Jiang and Mengshu Sun and Lei Liang and Zhiqiang Zhang},
+      journal={ArXiv},
+      year={2024},
+      volume={abs/2407.13101},
+      url={https://api.semanticscholar.org/CorpusID:271270177}
+    }
+    ```
+    ---
+    
+    ## 7. MAQInstruct
+    
+    <a href="https://arxiv.org/abs/2502.03954" target="_blank">MAQInstruct: Instruction-based Unified Event Relation Extraction</a>
+    
+    ```
+    @article{Xu2025MAQInstructIU,
+      title={MAQInstruct: Instruction-based Unified Event Relation Extraction},
+      author={Jun Xu and Mengshu Sun and Zhiqiang Zhang and Jun Zhou},
+      journal={ArXiv},
+      year={2025},
+      volume={abs/2502.03954},
+      url={https://api.semanticscholar.org/CorpusID:276161153}
+    }
+    ```
+风险细节：
+    敏感类型：URL地址(url)
+    敏感细节：{hitWord=https://arxiv.org/abs/2409.13731}
+{hitWord=https://api.semanticscholar.org/CorpusID:272827380}
+{hitWord=https://arxiv.org/abs/2502.03843}
+{hitWord=https://api.semanticscholar.org/CorpusID:276161294}
+{hitWord=https://dl.acm.org/doi/abs/10.14778/3685800.3685810}
+{hitWord=https://arxiv.org/abs/2312.11819}
+{hitWord=https://api.semanticscholar.org/CorpusID:266362133}
+{hitWord=https://arxiv.org/abs/2402.14710}
+{hitWord=https://api.semanticscholar.org/CorpusID:267782724}
+{hitWord=https://arxiv.org/abs/2407.13101}
+{hitWord=https://api.semanticscholar.org/CorpusID:271270177}
+{hitWord=https://arxiv.org/abs/2502.03954}
+{hitWord=https://api.semanticscholar.org/CorpusID:276161153}
