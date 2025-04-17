@@ -130,6 +130,19 @@ const config = {
               },
             ],
           },
+          {
+            title: 'Contact US',
+            items: [
+              {
+                label: 'zhengke.gzk@antgroup.com',
+                to: '/',
+              },
+              {
+                label: 'leywar.liang@antgroup.com',
+                to: '/',
+              },
+            ],
+          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} KAG.`,
       },
