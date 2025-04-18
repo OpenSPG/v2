@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/git-pre-push-hook-warn.log" beforeDir="false" afterPath="$PROJECT_DIR$/git-pre-push-hook-warn.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.5.1.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.5.1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.5.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.6.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.6.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.7.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/recent_posts/release_notes/0.7.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +75,8 @@
       <workItem from="1744082437690" duration="37285000" />
       <workItem from="1744184822208" duration="42581000" />
       <workItem from="1744875897822" duration="591000" />
-      <workItem from="1744881585847" duration="2742000" />
+      <workItem from="1744881585847" duration="5703000" />
+      <workItem from="1744937822200" duration="2755000" />
     </task>
     <servers />
   </component>

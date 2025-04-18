@@ -135,16 +135,20 @@ const config = {
             items: [
               {
                 label: 'zhengke.gzk@antgroup.com',
-                to: '/',
+                to: 'https://github.com/OpenSPG/KAG',
               },
               {
                 label: 'leywar.liang@antgroup.com',
-                to: '/',
+                to: 'https://github.com/OpenSPG/KAG',
+              },
+              {
+                label: 'mengshu.sms@antgroup.com',
+                to: 'https://github.com/OpenSPG/KAG',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} KAG.`,
+        copyright: `Copyright © ${new Date().getFullYear()} OpenSPG.`,
       },
       prism: {
         theme: prismThemes.github,
