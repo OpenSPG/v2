@@ -134,15 +134,15 @@ const config = {
             title: 'Contact US',
             items: [
               {
+                label: 'mengshu.sms@antgroup.com',
+                to: 'https://github.com/OpenSPG/KAG',
+              },
+              {
                 label: 'zhengke.gzk@antgroup.com',
                 to: 'https://github.com/OpenSPG/KAG',
               },
               {
                 label: 'leywar.liang@antgroup.com',
-                to: 'https://github.com/OpenSPG/KAG',
-              },
-              {
-                label: 'mengshu.sms@antgroup.com',
                 to: 'https://github.com/OpenSPG/KAG',
               },
             ],
