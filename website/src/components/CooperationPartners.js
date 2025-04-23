@@ -17,10 +17,10 @@ export default function CooperationPartners() {
                         style={{
                             border: '0px solid #ccc',
                             borderRadius: '18px',
-                            padding: '15px',
-                            width: '350px',
+                            padding: '10px',
+                            flexBasis: 'calc(33.333% - 40px)',
                             textAlign: 'center',
-                            margin: '15px',
+                            margin: '10px',
                         }}
                     >
                         <div

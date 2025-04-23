@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b16d153-f7e8-4061-9687-8264ca3f4a73" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/CooperationPartners.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/CooperationPartners.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <workItem from="1744875897822" duration="591000" />
       <workItem from="1744881585847" duration="5703000" />
       <workItem from="1744937822200" duration="10838000" />
-      <workItem from="1745390898130" duration="13168000" />
+      <workItem from="1745390898130" duration="13942000" />
     </task>
     <servers />
   </component>
