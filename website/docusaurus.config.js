@@ -89,6 +89,7 @@ const config = {
             label: 'Blog',
           },
           /*{to: '/blog', label: 'Blog', position: 'left'},*/
+          {href: 'http://openkg.cn/', label: 'OpenKG', position: 'right'},
           {
             href: 'https://github.com/OpenSPG/KAG',
             label: 'GitHub',
@@ -97,7 +98,7 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
             title: 'Docs',
@@ -134,16 +135,13 @@ const config = {
             title: 'Contact US',
             items: [
               {
-                label: 'mengshu.sms@antgroup.com',
-                to: 'https://github.com/OpenSPG/KAG',
+                html: `<a class="footer__link-item"> mengshu.sms@antgroup.com </a>`,
               },
               {
-                label: 'zhengke.gzk@antgroup.com',
-                to: 'https://github.com/OpenSPG/KAG',
+                html: `<a class="footer__link-item"> zhengke.gzk@antgroup.com </a>`,
               },
               {
-                label: 'leywar.liang@antgroup.com',
-                to: 'https://github.com/OpenSPG/KAG',
+                html: `<a class="footer__link-item"> leywar.liang@antgroup.com </a>`,
               },
             ],
           },
@@ -155,6 +153,19 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+  customFields: {
+    partners: [
+      { name: 'Tongji University', website: 'https://www.tongji.edu.cn/', imageBackground:'#0A5AA8', logo: 'https://www.tongji.edu.cn/images/logo.png' },
+      { name: 'Hundsun Technologies Inc.', website: 'https://www.hundsun.com/', logo: 'https://www.hundsun.com/assets/img/logo.591f4472.gif' },
+      { name: 'Zhejiang University',  website: 'https://www.zju.edu.cn/', imageBackground:'#003f88', logo: 'https://www.zju.edu.cn/_upload/tpl/0b/bf/3007/template3007/static/js/../../static/media/mlogo.66388675484ae2a807b2ad65b1d31ca9.svg' },
+      { name: 'Tianjin University',  website: 'https://www.tju.edu.cn/', logo: 'https://www.tju.edu.cn/images/logo202107.png' },
+      { name: 'Zhejiang Chuanglin Technology Co., Ltd.',  website: 'https://www.galaxybase.com/', imageBackground:'#000', logo: 'https://www.galaxybase.com/cdn/pc/zh/home2/logo.png' },
+      { name: 'Datagrand Inc.',  website: 'https://www.datagrand.com/', imageBackground:'#007aff', logo: 'https://www.datagrand.com/images/share/head/dg-logo-v2.png' },
+      { name: 'Haiyi Zhi Information Technology (Nanjing) Co., Ltd.',  website: 'https://www.dlzb.com/c-748810/', logo: 'https://img.dlzb.com/favicon.ico' },
+      { name: 'Institute of Computing Technology, Chinese Academy of Sciences',  website: 'https://www.ict.ac.cn/', logo: 'https://www.ict.ac.cn/images/header_ict.png' },
+      { name: 'Zhejiang Lab',  website: 'https://www.zhejianglab.org/lab/home', logo: 'https://www.zhejianglab.org/static/img/logo.19999760.png' },
+    ],
+  },
 };
 
 export default config;
