@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[334],{2592:e=>{e.exports=JSON.parse('{"categoryGeneratedIndex":{"title":"Design Philosophy","slug":"/category/design-philosophy","permalink":"/v2/blog/category/design-philosophy","sidebar":"tutorialSidebar","navigation":{"next":{"title":"White Paper","permalink":"/v2/blog/category/white-paper"}}}}')}}]);
